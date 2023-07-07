@@ -1,4 +1,7 @@
 package de.iav.backend.exception;
 
-public class UserNotFoundException {
+public class UserNotFoundException extends RuntimeException{
+    public UserNotFoundException(String id) {
+        super("User with id " + id + " not found");
+    }
 }
