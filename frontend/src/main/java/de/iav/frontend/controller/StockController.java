@@ -6,4 +6,5 @@ import javafx.scene.control.ListView;
 public class StockController {
     @FXML
     public ListView lv_stocks;
+
 }
