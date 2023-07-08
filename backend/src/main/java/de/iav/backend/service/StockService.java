@@ -15,10 +15,6 @@ import java.util.Optional;
 public class StockService {
 
     public final List<Stock> tempStocks = new ArrayList<>(Arrays.asList(
-
-
-
-
             new Stock("US0378331005","865985", "AAPL", "Apple Inc"),
             new Stock("US0231351067","906866", "AMZN", "Amazon.com, Inc."),
             new Stock("US02079K3059","A14Y6F", "GOOGL", "Alphabet Inc. (Google)"),
