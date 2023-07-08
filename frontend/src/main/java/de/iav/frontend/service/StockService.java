@@ -51,7 +51,7 @@ public class StockService {
 
     }
 
-    private Stock mapToStudent(String json) {
+    private Stock mapToSStock(String json) {
         try {
             return objectMapper.readValue(json, Stock.class);
         } catch (JsonProcessingException e) {
