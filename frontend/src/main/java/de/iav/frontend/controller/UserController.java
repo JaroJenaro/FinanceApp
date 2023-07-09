@@ -27,4 +27,6 @@ public class UserController {
     public void onSignUpButtonClick(ActionEvent event) {
         System.out.println("sign up button clicked");
     }
+
+
 }

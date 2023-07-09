@@ -34,11 +34,11 @@ public class StockController {
 
         if(lv_stocks.getSelectionModel().getSelectedItem() != null){
             System.out.println("Selected to stock to transaction : " + lv_stocks.getSelectionModel().getSelectedItem());
-            //sceneSwitchService.switchToStudentRegister(event, lv_stocks.getSelectionModel().getSelectedItem());
+            sceneSwitchService.switchToTransactionController(event, lv_stocks.getSelectionModel().getSelectedItem());
         }
         else{
 
-            System.out.println("Transaktion nicht möglich da kein Stock is selected selektiert:");
+            System.out.println("Transaktion nicht möglich da kein Stock is selected.");
         }
     }
 

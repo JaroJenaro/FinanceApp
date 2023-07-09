@@ -23,8 +23,6 @@ public class StockService {
     public static synchronized StockService getInstance() {
         if (instance == null) {
             instance = new StockService();
-            //httpClient = HttpClient.newHttpClient();
-            //objectMapper = new ObjectMapper();
         }
         return instance;
     }
