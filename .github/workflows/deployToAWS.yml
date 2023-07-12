@@ -70,7 +70,7 @@ jobs:
           script: |
             docker stop phosphorus
             docker rm phosphorus
-            docker run --pull=always --name phosphorus -e=MONGO_DB_URI=${{ secrets.MONGO_DB_URI }} --network capstones --ip 10.0.2.15 --restart always --detach jarojenaro/financeapp:latest
+            docker run --pull=always --name phosphorus -e MONGO_DB_URI=${{ secrets.MONGO_DB_URI }} --network capstones --ip 10.0.2.15 --restart always --detach jarojenaro/financeapp:latest
             sleep 15s
             docker logs phosphorus
 
