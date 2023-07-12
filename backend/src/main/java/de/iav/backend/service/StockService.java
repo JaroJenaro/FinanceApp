@@ -35,10 +35,6 @@ public class StockService {
         return stockRepository.findById(id);
     }
 
-    public List<Stock> getStockByISIN(String isin){
-        return stockRepository.findAllByISINEqualsIgnoreCase(isin);
-    }
-
 
     public List<Stock> setStockByRepository(){
         if (stockRepository.findAll().size() == 0)
@@ -47,19 +43,6 @@ public class StockService {
             return stockRepository.findAll();
 
     }
-    /*
-    public Stock createOwner(Stock student){
-        return stockRepository.save(student);
-    }
-
-    public Stock updateOwner(String id, Stock petToUpdate){
-        stockRepository.findById(id).orElseThrow(() -> new OwnerNotFoundException(id));
-
-        Stock updatedStudent = petToUpdate.withId(petToUpdate, id);
-
-        return stockRepository.save(updatedStudent);
-    }
-         */
 
     private List<Stock> fillDataWithStocks(){
         return stockRepository.saveAll(tempStocks);

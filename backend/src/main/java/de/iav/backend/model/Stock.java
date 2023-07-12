@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @Builder
 @Document(collection = "stocks")
 
-//                                 String id,
 public record Stock(
 
         @MongoId

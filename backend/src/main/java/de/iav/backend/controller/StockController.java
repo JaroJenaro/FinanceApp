@@ -3,7 +3,10 @@ package de.iav.backend.controller;
 
 import de.iav.backend.model.Stock;
 import de.iav.backend.service.StockService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,16 +37,5 @@ public class StockController {
         return stockService.setStockByRepository();
     }
 
-    /*
-    @GetMapping("/search")
-    public List<User> getPetsBySpecificSearch(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName ){
 
-        if(firstName != null)
-        {
-            return stockService.findAllByFirstNameEqualsIgnoreCase(firstName);
-        }
-        else{
-            return stockService.findAllByLastNameEqualsIgnoreCase(lastName);
-        }
-    }*/
 }

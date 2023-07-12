@@ -35,22 +35,5 @@ public class TransactionController {
     }
 
 
-/*
-    @GetMapping("/set")
-    public List<Stock> getPetById(){
-        return transactionService.setStockByRepository();
-    }
 
-
-    @GetMapping("/search")
-    public List<User> getPetsBySpecificSearch(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName ){
-
-        if(firstName != null)
-        {
-            return stockService.findAllByFirstNameEqualsIgnoreCase(firstName);
-        }
-        else{
-            return stockService.findAllByLastNameEqualsIgnoreCase(lastName);
-        }
-    }*/
 }

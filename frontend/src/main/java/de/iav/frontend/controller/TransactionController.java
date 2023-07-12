@@ -36,29 +36,6 @@ public class TransactionController {
     public TextField tfSum;
 
 
-    /* public void initialize() {
-         showAllStocks();
-     }
-
-
-
-
-
-
-
-     public void doStockTransaction(ActionEvent event) throws IOException {
-
-         if(lv_stocks.getSelectionModel().getSelectedItem() != null){
-             System.out.println("Selected to stock to transaction : " + lv_stocks.getSelectionModel().getSelectedItem());
-             //sceneSwitchService.switchToStudentRegister(event, lv_stocks.getSelectionModel().getSelectedItem());
-         }
-         else{
-
-             System.out.println("Transaktion nicht möglich da kein Stock is selected selektiert:");
-         }
-     }
-
- */
     public void buyStocks() {
         int quantity = Integer.parseInt(tfQuantity.getText());
         double price = Double.parseDouble(tfPrice.getText());
