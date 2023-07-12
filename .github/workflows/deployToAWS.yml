@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           #Set Java Version
-          java-version: '17'
+          java-version: '20'
           distribution: 'adopt'
           cache: 'maven'
 
@@ -50,7 +50,7 @@ jobs:
         with:
           push: true
           #Set dockerhub project (replace "sergejneuefische/javafx-student-db")
-          tags: jarojenaro/FinanceApp:latest
+          tags: jarojenaro/financeapp:latest
           context: ./backend
 
   deploy:
@@ -62,23 +62,23 @@ jobs:
         with:
           host: capstone-project.de
           #Set App Name (replace "antimon" with "oxygen", "phosphorus", "mercury")
-          username: antimon
+          username: phosphorus
           password: ${{ secrets.SSH_PASSWORD }}
           #Set App Name (replace "antimon" with "oxygen", "phosphorus", "mercury")
           #Set dockerhub project (replace "sergejneuefische/javafx-student-db")
-          #Set IP (replace "10.0.2.1" with "10.0.2.14", "10.0.2.15" or "10.0.2.16")
+          #Set IP "10.0.2.15"
           script: |
-            docker stop antimon
-            docker rm antimon
-            docker run --pull=always --name antimon -e=MONGO_DB_URI=${{ secrets.MONGO_DB_URI }} --network capstones --ip 10.0.2.1 --restart always --detach sergejneuefische/javafx-student-db:latest
+            docker stop phosphorus
+            docker rm phosphorus
+            docker run --pull=always --name phosphorus -e=MONGO_DB_URI=${{ secrets.MONGO_DB_URI }} --network capstones --ip 10.0.2.15 --restart always --detach jarojenaro/financeapp:latest
             sleep 15s
-            docker logs antimon
+            docker logs phosphorus
 
       - name: Check the deployed service URL
         uses: jtalk/url-health-check-action@v3
         with:
           #Set App Name (replace "antimon" with "oxygen", "phosphorus", "mercury")
-          url: http://antimon.capstone-project.de
+          url: http://phosphorus.capstone-project.de
           max-attempts: 3
           retry-delay: 5s
           retry-all: true
