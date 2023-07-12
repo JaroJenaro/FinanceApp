@@ -1,7 +1,7 @@
 package de.iav.frontend.model;
 
 public record User(
-        String userId,
+        String id,
         String firstName,
         String lastName,
         String email,
