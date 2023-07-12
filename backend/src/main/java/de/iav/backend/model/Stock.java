@@ -1,8 +1,19 @@
 package de.iav.backend.model;
 
-public record Stock(String ISIN,
-                    String WKN,
-                    String stockTicker,
-                    String companyName) {
+
+import lombok.Builder;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
+@Builder
+@Document(collection = "stocks")
+
+public record Stock(
+
+        @MongoId
+        String ISIN,
+        String WKN,
+        String stockTicker,
+        String companyName) {
 
 }
