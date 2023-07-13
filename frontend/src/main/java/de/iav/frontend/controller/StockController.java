@@ -16,6 +16,7 @@ public class StockController {
     @FXML
     public ListView<Stock> lv_stocks;
 
+
     public void initialize() {
         showAllStocks();
     }
