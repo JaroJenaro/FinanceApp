@@ -30,24 +30,26 @@ public class UserController {
     @GetMapping("/search")
     public List<User> getPetsBySpecificSearch(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName ){
 
-        if(firstName != null)
-        {
+        if (firstName != null) {
             return userService.findAllByFirstNameEqualsIgnoreCase(firstName);
-        }
-        else{
+        } else {
             return userService.findAllByLastNameEqualsIgnoreCase(lastName);
         }
     }
 
+    @GetMapping("/set")
+    public List<User> setDefaultUsers() {
+        return userService.setUserByRepository();
+    }
 
 
     @PostMapping
-    public User addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable String id, @RequestBody User user){
+    public User updateUser(@PathVariable String id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
 

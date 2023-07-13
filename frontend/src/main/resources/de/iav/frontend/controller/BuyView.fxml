@@ -8,14 +8,12 @@
     <ListView fx:id="lv_stocks" layoutX="158.0" layoutY="30.0" prefHeight="155.0" prefWidth="570.0"
               AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0"
               AnchorPane.topAnchor="30.0"/>
-    <ComboBox fx:id="cb_stocks" layoutX="15.0" layoutY="193.0" prefHeight="37.0" prefWidth="570.0"
+    <ComboBox fx:id="cb_users" layoutX="15.0" layoutY="193.0" prefHeight="37.0" prefWidth="570.0"
               AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0"
               AnchorPane.topAnchor="193.0"/>
     <Label layoutX="21.0" layoutY="7.0" prefHeight="17.0" prefWidth="255.0" text="Verfügbare Aktien zum Kaufen"/>
-    <Button layoutX="19.0" layoutY="361.0" mnemonicParsing="false" onAction="#doStockTransaction" prefHeight="25.0"
-            prefWidth="181.0" text="Transaktion ausführen List"/>
-    <Button layoutX="249.0" layoutY="361.0" mnemonicParsing="false" onAction="#doStockTransaction_CB" prefHeight="25.0"
-            prefWidth="217.0" text="Transaktion ausführen ComboBox"/>
+    <Button layoutX="21.0" layoutY="354.0" mnemonicParsing="false" onAction="#doStockTransaction_CB" prefHeight="25.0"
+            prefWidth="217.0" text="BUY Order ausführen"/>
     <Label layoutX="15.0" layoutY="241.0" prefHeight="17.0" prefWidth="126.0" text="Abzahl der Aktien"
            AnchorPane.leftAnchor="12.0"/>
     <Label layoutX="15.0" layoutY="269.0" prefHeight="17.0" prefWidth="94.0" text="Preis" AnchorPane.leftAnchor="12.0"/>
