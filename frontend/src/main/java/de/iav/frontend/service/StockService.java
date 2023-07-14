@@ -49,7 +49,7 @@ public class StockService {
 
     }
 
-    private Stock mapToSStock(String json) {
+    private Stock mapToStock(String json) {
         try {
             return objectMapper.readValue(json, Stock.class);
         } catch (JsonProcessingException e) {

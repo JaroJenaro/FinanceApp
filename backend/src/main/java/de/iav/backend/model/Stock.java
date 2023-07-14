@@ -7,13 +7,10 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Builder
 @Document(collection = "stocks")
-
 public record Stock(
-
         @MongoId
         String ISIN,
         String WKN,
         String stockTicker,
         String companyName) {
-
 }
