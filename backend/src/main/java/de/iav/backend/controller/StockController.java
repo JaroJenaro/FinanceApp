@@ -33,7 +33,7 @@ public class StockController {
     }
 
     @GetMapping("/set")
-    public List<Stock> getPetById(){
+    public List<Stock> setDefaultStocks() {
         return stockService.setStockByRepository();
     }
 
