@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.BuyViewController">
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="de.iav.frontend.controller.SellViewController">
     <ListView fx:id="lv_stocks" layoutX="158.0" layoutY="30.0" prefHeight="155.0" prefWidth="570.0"
               AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0"
               AnchorPane.topAnchor="30.0"/>
@@ -12,9 +12,9 @@
               AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0"
               AnchorPane.topAnchor="193.0"/>
     <Label layoutX="21.0" layoutY="7.0" prefHeight="17.0" prefWidth="255.0" text="Verfügbare Aktien zum Kaufen"/>
-    <Button layoutX="21.0" layoutY="354.0" mnemonicParsing="false" onAction="#doBuyStockTransaction" prefHeight="25.0"
-            prefWidth="217.0" text="BUY Order ausführen"/>
-    <Label layoutX="15.0" layoutY="241.0" prefHeight="17.0" prefWidth="126.0" text="Anzahl der Aktien"
+    <Button layoutX="21.0" layoutY="354.0" mnemonicParsing="false" onAction="#doSellStockTransaction" prefHeight="25.0"
+            prefWidth="217.0" text="SELL Order ausführen"/>
+    <Label layoutX="15.0" layoutY="241.0" prefHeight="17.0" prefWidth="126.0" text="Abzahl der Aktien"
            AnchorPane.leftAnchor="12.0"/>
     <Label layoutX="15.0" layoutY="269.0" prefHeight="17.0" prefWidth="94.0" text="Preis" AnchorPane.leftAnchor="12.0"/>
     <Label layoutX="15.0" layoutY="295.0" prefHeight="17.0" prefWidth="94.0" text="Summe" AnchorPane.leftAnchor="12.0"/>
@@ -22,5 +22,5 @@
     <TextField fx:id="tf_price" layoutX="149.0" layoutY="265.0" onAction="#calculateSum"/>
     <TextField fx:id="tf_sum" layoutX="149.0" layoutY="291.0"/>
     <Button layoutX="334.0" layoutY="354.0" mnemonicParsing="false" onAction="#doSceneChange" prefHeight="25.0"
-            prefWidth="217.0" text="Wechseln ins VERKAUF Maske"/>
+            prefWidth="217.0" text="Wechseln ins KAUF Maske"/>
 </AnchorPane>

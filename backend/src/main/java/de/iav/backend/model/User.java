@@ -17,12 +17,20 @@ public record User(
         String email,
         String password,
         @DBRef(db = "transactions")
-        List<TransactionWithoutUser> portfolio) {
-
+        List<TransactionWithoutUser> portfolio/*,
+        String moneyAccount*/) {
 
 
     public User withId(String newId) {
+        //return new User(newId, this.firstName, this.lastName, this.email, this.password, this.portfolio, this.moneyAccount);
         return new User(newId, this.firstName, this.lastName, this.email, this.password, this.portfolio);
 
     }
+
+    public User withPortfolio(List<TransactionWithoutUser> portfolio) {
+
+        return new User(this.id, this.firstName, this.lastName, this.email, this.password, portfolio);
+
+    }
+
 }
