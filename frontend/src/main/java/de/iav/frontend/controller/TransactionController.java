@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class TransactionController {
 
@@ -17,7 +18,7 @@ public class TransactionController {
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
 
     private Stock transactionStock;
-    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "1234");
+    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "1234", new ArrayList<>());
 
     @FXML
     public TextField tfCompany;

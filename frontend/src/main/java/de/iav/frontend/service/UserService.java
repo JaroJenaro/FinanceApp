@@ -1,16 +1,13 @@
 package de.iav.frontend.service;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.iav.frontend.model.User;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
-
 public class UserService {
 
     private static UserService instance;
