@@ -3,13 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.portfolioViewController">
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.PortfolioViewController">
     <children>
         <VBox layoutX="20.0" layoutY="112.0" prefHeight="375.0" prefWidth="561.0" spacing="10">
    
@@ -23,13 +22,13 @@
                 </columns>
             </TableView>
         </VBox>
-      <Button fx:id="buyButton" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="BUY" onAction="#openBuyView"/>
-      <Button fx:id="sellButton" layoutX="398.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="SELL" onAction="#openSellView" />
+      <Button fx:id="buyButton" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" onAction="#openBuyView" prefHeight="50.0" prefWidth="91.0" text="BUY" />
+      <Button fx:id="sellButton" layoutX="398.0" layoutY="500.0" mnemonicParsing="false" onAction="#openSellView" prefHeight="50.0" prefWidth="91.0" text="SELL" />
       <Text layoutX="67.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Portfolio">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <TextArea fx:id="portfolioValue" layoutX="398.0" layoutY="33.0" prefHeight="45.0" prefWidth="127.0" />
+      <Text fx:id="portfolioValue" layoutX="405.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="value" wrappingWidth="111.98307228088379" />
     </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package de.iav.frontend.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.iav.frontend.model.TransactionWithoutUser;
 import de.iav.frontend.model.User;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -36,7 +37,6 @@ public class UserService {
         try {
             return objectMapper.readValue(responseBody, new TypeReference<>() {
             });
-            //return new ArrayList<Student>();
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to map users List", e);
         }
@@ -46,6 +46,43 @@ public class UserService {
             return objectMapper.readValue(json, User.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to map stock", e);
+        }
+    }
+
+    public List<TransactionWithoutUser> getPortfolioForUser(String userId) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8080/api/financeapp/users/" + userId + "/portfolio"))
+                .build();
+        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(this::mapToPortfolioList)
+                .join();
+    }
+    private List<TransactionWithoutUser> mapToPortfolioList(String responseBody) {
+        try {
+            return objectMapper.readValue(responseBody, new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to map portfolio list", e);
+        }
+    }
+
+    public Double getPortfolioValue(String userId) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8080/api/financeapp/users/" + userId + "/portfoliovalue"))
+                .build();
+        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(this::mapToPortfolioValue)
+                .join();
+    }
+
+    private Double mapToPortfolioValue(String responseBody) {
+        try {
+            return objectMapper.readValue(responseBody, new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to map portfolio value", e);
         }
     }
 }
