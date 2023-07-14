@@ -27,7 +27,8 @@ public class TransactionService {
 
     public Transaction executeTransaction(Transaction transaction) {
         Transaction executedTransaction = transactionRepository.save(transaction);
-        userService.updateUserTransaction(transaction);
+        System.out.println("executedTransaction: " + executedTransaction);
+        userService.updateUserTransaction(executedTransaction);
         return executedTransaction;
     }
 

@@ -73,10 +73,12 @@ public class UserService {
         if (userToUpdate.portfolio() == null) {
             List<TransactionWithoutUser> arrayList = new ArrayList<>(List.of(transactionWithoutUser));
             userToUpdate = userToUpdate.withPortfolio(arrayList);
+            System.out.println("if transactionWithoutUser: " + transactionWithoutUser);
         } else {
+
             userToUpdate.portfolio().add(transactionWithoutUser);
         }
-        System.out.println("userToUpdate: " + userToUpdate);
+        System.out.println("else transactionWithoutUser: " + transactionWithoutUser);
         userRepository.save(userToUpdate);
     }
 
