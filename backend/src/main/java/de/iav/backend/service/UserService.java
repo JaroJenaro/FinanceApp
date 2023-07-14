@@ -1,15 +1,13 @@
 package de.iav.backend.service;
 
 import de.iav.backend.exception.UserNotFoundException;
+import de.iav.backend.model.TransactionWithoutUser;
 import de.iav.backend.model.User;
 import de.iav.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -17,9 +15,9 @@ import java.util.Optional;
 public class UserService {
 
     public final List<User> tempUsers = new ArrayList<>(Arrays.asList(
-            new User("12345", "Erum", "Schuakat", "erum.schaukat@iav.de", "12345"),
-            new User("23456", "Houman", "Mohammadi", "houman.mohammadi@iav.de", "23456"),
-            new User("34567", "Jaroslaw", "Placzek", "jaroslaw.placzek@iav.de", "34567")
+            new User("12345", "Erum", "Schuakat", "erum.schaukat@iav.de", "12345", new ArrayList<TransactionWithoutUser>()),
+            new User("23456", "Houman", "Mohammadi", "houman.mohammadi@iav.de", "23456", new ArrayList<TransactionWithoutUser>()),
+            new User("34567", "Jaroslaw", "Placzek", "jaroslaw.placzek@iav.de", "34567", new ArrayList<TransactionWithoutUser>())
 
     ));
 
