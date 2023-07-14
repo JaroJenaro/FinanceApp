@@ -12,9 +12,9 @@ public record Transaction(
         String id,
         String typeOfTransaction,
         String dateAndTimeOfTransaction,
-        @DBRef
+        @DBRef(db = "users")
         User user,
-        @DBRef
+        @DBRef(db = "stocks")
         Stock stock,
         Integer quantity,
         Double price

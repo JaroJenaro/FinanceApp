@@ -23,8 +23,8 @@
                 </columns>
             </TableView>
         </VBox>
-      <Button fx:id="buyyButton" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="BUY" />
-      <Button fx:id="sellButton" layoutX="398.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="SELL" />
+      <Button fx:id="buyButton" layoutX="130.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="BUY" onAction="#openBuyView"/>
+      <Button fx:id="sellButton" layoutX="398.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="SELL" onAction="#openSellView" />
       <Text layoutX="67.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Portfolio">
          <font>
             <Font size="23.0" />
