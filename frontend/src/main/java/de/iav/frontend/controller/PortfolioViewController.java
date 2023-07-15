@@ -3,6 +3,7 @@
 package de.iav.frontend.controller;
 
 import de.iav.frontend.model.TransactionWithoutUser;
+import de.iav.frontend.service.PortfolioViewService;
 import de.iav.frontend.service.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,18 +43,18 @@ public class PortfolioViewController {
     @FXML
     public Text portfolioValue;
 
-    private final UserService userService= UserService.getInstance();
+    private final PortfolioViewService portfolioViewService= PortfolioViewService.getInstance();
     public void initialize(String userId) {
 
         // Retrieve portfolio transactions for the user
-        List<TransactionWithoutUser> portfolio = userService.getPortfolioForUser(userId);
+        List<TransactionWithoutUser> portfolio = portfolioViewService.getAllTransactionsOfUser(userId);
 
         // Create an ObservableList to store the portfolio transactions
         ObservableList<TransactionWithoutUser> portfolioList = FXCollections.observableArrayList(portfolio);
 
 
         portfolioTable.setItems(portfolioList);
-        portfolioValue.setText(userService.getPortfolioValue(userId).toString());
+        portfolioValue.setText(portfolioViewService.getPortfolioValue(userId).toString());
 
 
         portfolioTable.getSelectionModel()

@@ -1,42 +1,78 @@
 package de.iav.frontend.service;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.iav.frontend.model.TransactionWithoutUser;
 
-import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PortfolioViewService {
 
-    private static PortfolioViewService instance;
-
-    public static synchronized PortfolioViewService getInstance() {
-        if (instance == null) {
-            instance = new PortfolioViewService();
+        private static PortfolioViewService instance;
+        private final HttpClient httpClient;
+        private final ObjectMapper objectMapper;
+        private List<TransactionWithoutUser> portfolio;
+        private PortfolioViewService() {
+            this.httpClient = HttpClient.newHttpClient();
+            this.objectMapper = new ObjectMapper();
+            portfolio= new ArrayList<>();
         }
-        return instance;
+
+        public static synchronized PortfolioViewService getInstance() {
+            if (instance == null) {
+                instance = new PortfolioViewService();
+            }
+            return instance;
+        }
+
+        public List<TransactionWithoutUser> getAllTransactionsOfUser(String userId) {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .GET()
+                    .uri(URI.create("http://localhost:8080/api/financeapp/user/"+userId+"portfolio"))
+                    .build();
+
+            return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenApply(HttpResponse::body)
+                    .thenApply(this::mapToTransactionsList) // .thenApply(responseBody -> mapToStudent(responseBody))
+                    .join();
+        }
+
+        private List<TransactionWithoutUser> mapToTransactionsList(String responseBody) {
+            try {
+                return objectMapper.readValue(responseBody, new TypeReference<>() {});
+                //return new ArrayList<Student>();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException("Failed to map stocksList", e);
+            }
+
+        }
+
+    public Double getPortfolioValue(String userId) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8080/api/financeapp/user/"+userId+"portfoliovalue"))
+                .build();
+
+        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(this::mapToPortfolio) // .thenApply(responseBody -> mapToStudent(responseBody))
+                .join();
     }
 
-    public void switchToBuyView(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/BuyView.fxml"));
-        Parent root = loader.load();
+    private Double mapToPortfolio(String responseBody) {
+        try {
+            return objectMapper.readValue(responseBody, new TypeReference<>() {});
 
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to map stocksList", e);
+        }
 
-    public void switchToSellView(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/SellView.fxml"));
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
     }
 }
+
