@@ -1,5 +1,6 @@
 package de.iav.backend.controller;
 
+import de.iav.backend.model.TransactionWithoutUser;
 import de.iav.backend.model.User;
 import de.iav.backend.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +19,22 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllPets(){
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getPetById(@PathVariable String id){
+    public Optional<User> getUserById(@PathVariable String id) {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/transactions/{id}")
+    public List<TransactionWithoutUser> getTransactionWithoutUserById(@PathVariable String id) {
+        return userService.getTransactionWithoutUserById(id);
+    }
+
     @GetMapping("/search")
-    public List<User> getPetsBySpecificSearch(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName ){
+    public List<User> getPetsBySpecificSearch(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName) {
 
         if (firstName != null) {
             return userService.findAllByFirstNameEqualsIgnoreCase(firstName);
@@ -47,6 +53,7 @@ public class UserController {
     public User addUser(@RequestBody User user) {
         return userService.createUser(user);
     }
+
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable String id, @RequestBody User user) {

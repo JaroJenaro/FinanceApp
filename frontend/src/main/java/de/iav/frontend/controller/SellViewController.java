@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-public class BuyViewController {
+public class SellViewController {
 
     private final StockService stockService = StockService.getInstance();
     private final UserService userService = UserService.getInstance();
@@ -46,11 +46,26 @@ public class BuyViewController {
     public void showAllStocks() {
         lv_stocks.getItems().clear();
         lv_stocks.getItems().addAll(stockService.getAllStocks());
+/*
+        ObservableList<Stock> allStocks =
+                FXCollections.observableArrayList(stockService.getAllStocks()
+                );
+        cb_stocks.setItems(allStocks);
+        //observableArrayList = FXCollections..getAllStocks().
+
+ */
         cb_users.getItems().addAll(userService.getAllUsers());
         System.out.println("showAllStocks");
     }
 
+
+    public void doStockTransaction_CB(ActionEvent event) throws IOException {
+
+
+    }
+
     public void calculateSum(ActionEvent event) {
+
         System.out.println("calculateSum");
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
@@ -58,29 +73,29 @@ public class BuyViewController {
         tf_sum.setText(Double.toString(sum));
     }
 
+    public void doSceneChange(ActionEvent event) throws IOException {
+        sceneSwitchService.switchToBuyViewController(event);
+    }
 
-    public void doBuyStockTransaction(ActionEvent event) {
+    public void doSellStockTransaction(ActionEvent event) {
+
         if (lv_stocks.getSelectionModel().getSelectedItem() != null &&
                 cb_users.getSelectionModel().getSelectedItem() != null &&
                 quantity > 0 &&
                 price > 0
         ) {
-            System.out.println("Bereit zum Kaufen User: " + cb_users.getSelectionModel().getSelectedItem());
-            System.out.println("kauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
+            System.out.println("Bereit zum Verkaufen User: " + cb_users.getSelectionModel().getSelectedItem());
+            System.out.println("verkauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
             System.out.println(" für insgesamt " + tf_sum.getText());
-            TransactionWithoutIdDto transactionWithoutIdDto = new TransactionWithoutIdDto(TransactionType.BUY,
+            TransactionWithoutIdDto transactionWithoutIdDto = new TransactionWithoutIdDto(TransactionType.SELL,
                     LocalDateTime.now().toString(), cb_users.getSelectionModel().getSelectedItem(), lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction buyTransaction = transactionService.addTransaction(transactionWithoutIdDto);
+            System.out.println("sellTransaction: " + buyTransaction + "ausgeführt");
 
-            System.out.println("buyTransaction: " + buyTransaction + "ausgeführt");
+
         } else {
 
             System.out.println("Transaktion nicht möglich da kein Stock is selected.");
         }
-    }
-
-    public void doSceneChange(ActionEvent event) throws IOException {
-        sceneSwitchService.switchToSellViewController(event);
-
     }
 }
