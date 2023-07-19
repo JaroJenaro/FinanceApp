@@ -14,11 +14,9 @@
    
             <TableView fx:id="portfolioTable" prefHeight="467.0" prefWidth="561.0" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="symbolColumn" prefWidth="100.0" text="Symbol" />
-                    <TableColumn fx:id="nameColumn" prefWidth="101.0" text="Name" />
-                    <TableColumn fx:id="quantityColumn" prefWidth="105.0" text="Quantity" />
-                    <TableColumn fx:id="priceColumn" prefWidth="107.0" text="Price" />
-                    <TableColumn fx:id="totalColumn" prefWidth="146.0" text="Total" />
+                    <TableColumn fx:id="companyName" prefWidth="100.0" text="company name" />
+                    <TableColumn fx:id="quantity" prefWidth="101.0" text="quantity" />
+                    <TableColumn fx:id="price" prefWidth="101.0" text="buy price" />
                 </columns>
             </TableView>
         </VBox>
