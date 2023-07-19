@@ -50,12 +50,26 @@ public class StockService {
         }
 
     }
+    public Double getStockPrice(String stockSymbol) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8080/api/financeapp/stocks/price/"+stockSymbol))
+                .build();
 
-/*    private Stock mapToStock(String json) {
+        return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(this::mapToUserList) // .thenApply(responseBody -> mapToStudent(responseBody))
+                .join();
+    }
+
+    private Double mapToUserList(String responseBody) {
         try {
-            return objectMapper.readValue(json, Stock.class);
+            return objectMapper.readValue(responseBody, new TypeReference<>() {
+            });
+
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Failed to map stock", e);
+            throw new RuntimeException("Failed to map users List", e);
         }
-    }*/
+
+    }
 }

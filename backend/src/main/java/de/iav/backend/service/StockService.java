@@ -19,7 +19,7 @@ public class StockService {
             new Stock("US0231351067","906866", "AMZN", "Amazon.com, Inc."),
             new Stock("US02079K3059","A14Y6F", "GOOGL", "Alphabet Inc. (Google)"),
             new Stock("US5949181045","870747", "MSFT", "Microsoft Corporation"),
-            new Stock("US30303M1027","A1JWVX", "FB", "Facebook, Inc.")
+            new Stock("US30303M1027","A1JWVX", "META", "Facebook, Inc.")
     ));
 
 
