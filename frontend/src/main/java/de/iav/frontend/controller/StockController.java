@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 import java.io.IOException;
+import java.util.Collection;
 
 public class StockController {
 
@@ -26,7 +27,7 @@ public class StockController {
 
     public void showAllStocks() {
         lv_stocks.getItems().clear();
-        lv_stocks.getItems().addAll(stockService.getAllStocks());
+        lv_stocks.getItems().addAll((Collection<? extends Stock>) stockService.getAllStocks());
         System.out.println("showAllStocks");
     }
 

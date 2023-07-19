@@ -8,4 +8,8 @@ public record Transaction(
         Stock stock,
         Integer quantity,
         Double price) {
+
+    public String toString(){
+        return id+"  "+user.firstName()+"  "+stock.companyName();
+    }
 }

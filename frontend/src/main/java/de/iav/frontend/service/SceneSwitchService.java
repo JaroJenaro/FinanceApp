@@ -1,5 +1,6 @@
 package de.iav.frontend.service;
 
+import de.iav.frontend.controller.PortfolioViewController;
 import de.iav.frontend.controller.TransactionController;
 import de.iav.frontend.model.Stock;
 import javafx.event.ActionEvent;
@@ -76,4 +77,17 @@ public class SceneSwitchService {
         stage.show();
     }
 
+    public void backToPortfolioScene(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/portfolioView.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+        Scene scene = new Scene(root);
+        //stage.setTitle("Finance App! [Kaufen]");
+        stage.setScene(scene);
+
+        stage.show();
+    }
 }

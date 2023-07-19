@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class TransactionController {
 
@@ -18,7 +17,7 @@ public class TransactionController {
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
 
     private Stock transactionStock;
-    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "1234", new ArrayList<>());
+    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "1234");
 
     @FXML
     public TextField tfCompany;
@@ -45,7 +44,7 @@ public class TransactionController {
 
         System.out.println(tfQuantity.getText() + " Aktien zum Preis von " + tfPrice.getText() + " für insgesamt " + tfSum.getText() + " kaufen. ");
 
-        TransactionWithoutIdDto transactionWithoutIdDto = new TransactionWithoutIdDto(TransactionType.BUY,
+        TransactionWithoutIdDTO transactionWithoutIdDto = new TransactionWithoutIdDTO(TransactionType.BUY,
                 LocalDateTime.now().toString(), user, transactionStock, quantity, price);
         Transaction buyTransaction = transactionService.addTransaction(transactionWithoutIdDto);
         System.out.println("buyTransaction: " + buyTransaction);
@@ -71,8 +70,8 @@ public class TransactionController {
     public void setStockDataInFields(Stock stock) {
         tfCompany.setText(stock.companyName());
         tfStockTicker.setText(stock.stockTicker());
-        tfISIN.setText(stock.ISIN());
-        tfWKN.setText(stock.WKN());
+        tfISIN.setText(stock.isin());
+        tfWKN.setText(stock.wkn());
         transactionStock = stock;
     }
 }

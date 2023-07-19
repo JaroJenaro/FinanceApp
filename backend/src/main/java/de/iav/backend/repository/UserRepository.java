@@ -12,9 +12,8 @@ import java.util.List;
 public interface UserRepository extends MongoRepository<User, String> {
 
 
-    List<User> findAllByFirstNameEqualsIgnoreCase(String firstName);
+    List<User> findAllById(String id);
 
-    List<User> findAllByLastNameEqualsIgnoreCase(String lastName);
 
     List<TransactionWithoutUser> findAllById(String id);
 

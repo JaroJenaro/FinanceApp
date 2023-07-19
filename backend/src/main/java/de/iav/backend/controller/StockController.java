@@ -23,8 +23,7 @@ public class StockController {
     }
 
     @GetMapping
-    public List<Stock> getAllPets(){
-        return stockService.getAllStocks();
+    public List<Stock> getAllStocks(){return stockService.getAllStocks();
     }
 
     @GetMapping("/{id}")

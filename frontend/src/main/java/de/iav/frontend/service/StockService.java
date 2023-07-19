@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.iav.frontend.model.Stock;
+import de.iav.frontend.model.User;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -41,19 +42,20 @@ public class StockService {
 
     private List<Stock> mapToStockList(String responseBody) {
         try {
-            return objectMapper.readValue(responseBody, new TypeReference<>() {});
-            //return new ArrayList<Student>();
+            return objectMapper.readValue(responseBody, new TypeReference<>() {
+            });
+
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Failed to map stocksLisz", e);
+            throw new RuntimeException("Failed to map stocks List", e);
         }
 
     }
 
-    private Stock mapToStock(String json) {
+/*    private Stock mapToStock(String json) {
         try {
             return objectMapper.readValue(json, Stock.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to map stock", e);
         }
-    }
+    }*/
 }

@@ -42,7 +42,7 @@ public class UserService {
         try {
             return objectMapper.readValue(responseBody, new TypeReference<>() {
             });
-            //return new ArrayList<Student>();
+
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to map users List", e);
         }

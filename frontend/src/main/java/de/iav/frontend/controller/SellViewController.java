@@ -87,10 +87,11 @@ public class SellViewController {
             System.out.println("Bereit zum Verkaufen User: " + cb_users.getSelectionModel().getSelectedItem());
             System.out.println("verkauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
             System.out.println(" für insgesamt " + tf_sum.getText());
-            TransactionWithoutIdDto transactionWithoutIdDto = new TransactionWithoutIdDto(TransactionType.SELL,
+            TransactionWithoutIdDTO transactionWithoutIdDto = new TransactionWithoutIdDTO(TransactionType.SELL,
                     LocalDateTime.now().toString(), cb_users.getSelectionModel().getSelectedItem(), lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
-            Transaction buyTransaction = transactionService.addTransaction(transactionWithoutIdDto);
-            System.out.println("sellTransaction: " + buyTransaction + "ausgeführt");
+            Transaction sellTransaction = transactionService.addTransaction(transactionWithoutIdDto);
+            System.out.println("sellTransaction: " + sellTransaction + "ausgeführt");
+
 
 
         } else {
