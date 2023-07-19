@@ -1,16 +1,22 @@
 package de.iav.backend.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Document(collection = "stocks")
-public record Stock(
+public class Stock{
+
         @MongoId
-        String ISIN,
-        String WKN,
-        String stockTicker,
-        String companyName) {
+        String ISIN;
+        String WKN;
+        String stockTicker;
+        String companyName;
+
 }

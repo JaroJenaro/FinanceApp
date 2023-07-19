@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class TransactionDTO {
+public class TransactionWithoutIdDTO {
     String typeOfTransaction;
     String dateAndTimeOfTransaction;
 

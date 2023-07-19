@@ -50,7 +50,9 @@ public class BuyViewController {
 
     public void showAllStocks() {
         lv_stocks.getItems().clear();
+        System.out.println("showAllStocks");
         lv_stocks.getItems().addAll(stockService.getAllStocks());
+        System.out.println("showAllUsers");
         cb_users.getItems().addAll(userService.getAllUsers());
         System.out.println("showAllStocks");
 
@@ -63,12 +65,12 @@ public class BuyViewController {
                 });
     }
 
-    private PortfolioViewController portfolioViewController;
+    //private PortfolioViewController portfolioViewController;
 
     // Inject the PortfolioViewController instance
-    public void setPortfolioViewController(PortfolioViewController portfolioViewController) {
+/*    public void setPortfolioViewController(PortfolioViewController portfolioViewController) {
         this.portfolioViewController = portfolioViewController;
-    }
+    }*/
     @FXML
     public void calculateSum(ActionEvent event) {
         System.out.println("calculateSum");
@@ -91,7 +93,7 @@ public class BuyViewController {
             System.out.println("Bereit zum Kaufen User: " + cb_users.getSelectionModel().getSelectedItem());
             System.out.println("kauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
             System.out.println(" für insgesamt " + tf_sum.getText());
-            TransactionDTO transactionDTO = new TransactionDTO(TransactionType.BUY,
+            TransactionWithoutIdDTO transactionDTO = new TransactionWithoutIdDTO(TransactionType.BUY,
                     LocalDateTime.now().toString(), cb_users.getSelectionModel().getSelectedItem(), lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction buyTransaction = transactionService.addTransaction(transactionDTO);
 

@@ -2,7 +2,7 @@ package de.iav.backend.service;
 
 import de.iav.backend.model.Stock;
 import de.iav.backend.model.Transaction;
-import de.iav.backend.model.TransactionDTO;
+import de.iav.backend.model.TransactionWithoutIdDTO;
 import de.iav.backend.model.User;
 import de.iav.backend.repository.TransactionRepository;
 import de.iav.backend.repository.UserRepository;
@@ -21,21 +21,18 @@ public class TransactionService {
     private final UserRepository userRepository;
 
     public List<Transaction> getAllTransactions() {
-        System.out.println(transactionRepository.findAll());
+        System.out.println("get all transaction");
+        System.out.println("get all transactions:  "+ transactionRepository.findAll());
         return transactionRepository.findAll();
     }
-
-
-
-
 
 
     public Optional<Transaction> getTransactionById(String id) {
         return transactionRepository.findById(id);
     }
 
-    public Transaction executeTransaction(TransactionDTO transactionDTO) {
-        Transaction transactionToSave=transactionDTO.getTransactionWithoutId();
+    public Transaction executeTransaction(TransactionWithoutIdDTO transactionWithoutIdDTO) {
+        Transaction transactionToSave= transactionWithoutIdDTO.getTransactionWithoutId();
         System.out.println(transactionToSave+"transactionToSave");
         Transaction executedTransaction = transactionRepository.save(transactionToSave);
         System.out.println("executedTransaction: " + executedTransaction);

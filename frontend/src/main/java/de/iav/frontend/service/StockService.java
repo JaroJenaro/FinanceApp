@@ -44,16 +44,16 @@ public class StockService {
             return objectMapper.readValue(responseBody, new TypeReference<>() {});
             //return new ArrayList<Student>();
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Failed to map stocksLisz", e);
+            throw new RuntimeException("Failed to map stocksList", e);
         }
 
     }
 
-    private Stock mapToStock(String json) {
+/*    private Stock mapToStock(String json) {
         try {
             return objectMapper.readValue(json, Stock.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to map stock", e);
         }
-    }
+    }*/
 }

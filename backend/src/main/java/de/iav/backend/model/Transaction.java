@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
 @Document(collection = "transactions")
 public class Transaction {
         @MongoId
@@ -34,7 +33,7 @@ public class Transaction {
                 this.price=price;
         }
 
-        public Transaction getTransactionWithoutId(){
+/*        public Transaction getTransactionWithoutId(){
                 Transaction newTransaction = new Transaction();
                 newTransaction.setTypeOfTransaction(this.typeOfTransaction);
                 newTransaction.setDateAndTimeOfTransaction(this.dateAndTimeOfTransaction);
@@ -43,6 +42,6 @@ public class Transaction {
                 newTransaction.setQuantity(this.quantity);
                 newTransaction.setPrice(this.price);
                 return  newTransaction;
-        }
+        }*/
 
 }

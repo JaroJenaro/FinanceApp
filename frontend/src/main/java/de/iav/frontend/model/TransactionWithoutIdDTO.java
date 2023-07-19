@@ -1,6 +1,6 @@
 package de.iav.frontend.model;
 
-public record TransactionDTO(
+public record TransactionWithoutIdDTO(
 
         TransactionType typeOfTransaction,
         String dateAndTimeOfTransaction,

@@ -7,7 +7,7 @@ public record Stock (
         String ISIN,
         String WKN,
         String stockTicker,
-        String companyName,
-        BigDecimal price
+        String companyName
+
 ){
 }

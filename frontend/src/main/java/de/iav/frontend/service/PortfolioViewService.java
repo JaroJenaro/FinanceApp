@@ -17,11 +17,9 @@ public class PortfolioViewService {
         private static PortfolioViewService instance;
         private final HttpClient httpClient;
         private final ObjectMapper objectMapper;
-        private List<Transaction> portfolio;
         private PortfolioViewService() {
             this.httpClient = HttpClient.newHttpClient();
             this.objectMapper = new ObjectMapper();
-            portfolio= new ArrayList<>();
         }
 
         public static synchronized PortfolioViewService getInstance() {

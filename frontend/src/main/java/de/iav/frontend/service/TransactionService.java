@@ -3,7 +3,7 @@ package de.iav.frontend.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.iav.frontend.model.Transaction;
-import de.iav.frontend.model.TransactionDTO;
+import de.iav.frontend.model.TransactionWithoutIdDTO;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -36,10 +36,10 @@ public class TransactionService {
         }
     }
 
-    public Transaction addTransaction(TransactionDTO transactionDTO) {
+    public Transaction addTransaction(TransactionWithoutIdDTO transactionWithoutIdDTO) {
         try {
             //StudentWithoutMatriculationNumber studentDto = generateOneStudentDto();
-            String requestBody = objectMapper.writeValueAsString(transactionDTO);
+            String requestBody = objectMapper.writeValueAsString(transactionWithoutIdDTO);
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/financeapp/transactions"))
                     .header("Content-Type", "application/json")

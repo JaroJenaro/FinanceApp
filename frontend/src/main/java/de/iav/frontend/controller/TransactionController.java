@@ -45,7 +45,7 @@ public class TransactionController {
 
         System.out.println(tfQuantity.getText() + " Aktien zum Preis von " + tfPrice.getText() + " für insgesamt " + tfSum.getText() + " kaufen. ");
 
-        TransactionDTO transactionWithoutIdDto = new TransactionDTO(TransactionType.BUY,
+        TransactionWithoutIdDTO transactionWithoutIdDto = new TransactionWithoutIdDTO(TransactionType.BUY,
                 LocalDateTime.now().toString(), user, transactionStock, quantity, price);
         Transaction buyTransaction = transactionService.addTransaction(transactionWithoutIdDto);
         System.out.println("buyTransaction: " + buyTransaction);
