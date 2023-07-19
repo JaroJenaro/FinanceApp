@@ -13,6 +13,8 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 @Document(collection = "stocks")
 public class Stock{
 
+
+
         @MongoId
         String ISIN;
         String WKN;
