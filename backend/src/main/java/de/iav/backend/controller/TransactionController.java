@@ -35,6 +35,7 @@ public class TransactionController {
 
     @PostMapping
     public Transaction executeTransactions(@RequestBody TransactionDTO transactionDTO) {
+        System.out.println(transactionDTO.toString()+"transactionDT");
         return transactionService.executeTransaction(transactionDTO);
     }
 

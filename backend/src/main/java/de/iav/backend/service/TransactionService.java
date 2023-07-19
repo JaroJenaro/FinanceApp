@@ -35,8 +35,9 @@ public class TransactionService {
     }
 
     public Transaction executeTransaction(TransactionDTO transactionDTO) {
-
-        Transaction executedTransaction = transactionRepository.save(transactionDTO.getTransactionWithoutId());
+        Transaction transactionToSave=transactionDTO.getTransactionWithoutId();
+        System.out.println(transactionToSave+"transactionToSave");
+        Transaction executedTransaction = transactionRepository.save(transactionToSave);
         System.out.println("executedTransaction: " + executedTransaction);
         return executedTransaction;
     }
