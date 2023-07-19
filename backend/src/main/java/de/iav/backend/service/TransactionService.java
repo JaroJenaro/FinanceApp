@@ -52,6 +52,5 @@ public class TransactionService {
         }
         return transactionRepository.findTransactionByUser(Optional.of(user));
     }
-
     // public List<Transaction> getAllTransactionByUser(User user) {    }
 }

@@ -2,6 +2,7 @@ package de.iav.backend.service;
 
 import de.iav.backend.exception.UserNotFoundException;
 import de.iav.backend.model.Transaction;
+import de.iav.backend.model.TransactionWithoutUser;
 import de.iav.backend.model.User;
 import de.iav.backend.repository.TransactionRepository;
 import de.iav.backend.repository.UserRepository;
@@ -62,6 +63,25 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public void updateUserTransaction(Transaction transaction) {
+        TransactionWithoutUser transactionWithoutUser = getTransactionWithoutUser(transaction);
+        User user = transaction.user();
+        userRepository.findById(user.id()).orElseThrow(() -> new UserNotFoundException(user.id()));
+
+        User userToUpdate = user.withId(user.id());
+        if (userToUpdate.portfolio() == null) {
+            List<TransactionWithoutUser> arrayList = new ArrayList<>(List.of(transactionWithoutUser));
+            userToUpdate = userToUpdate.withPortfolio(arrayList);
+            System.out.println("if transactionWithoutUser: " + transactionWithoutUser);
+        } else {
+
+            userToUpdate.portfolio().add(transactionWithoutUser);
+        }
+        System.out.println("else transactionWithoutUser: " + transactionWithoutUser);
+        userRepository.save(userToUpdate);
+    }
+
+
     public List<User> setUserByRepository() {
         if (userRepository.findAll().size() == 0)
             return fillDataWithUsers();
@@ -72,6 +92,5 @@ public class UserService {
     private List<User> fillDataWithUsers() {
         return userRepository.saveAll(tempUsers);
     }
-
 
 }

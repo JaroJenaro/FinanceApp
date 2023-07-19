@@ -93,6 +93,7 @@ public class SellViewController {
             System.out.println("sellTransaction: " + sellTransaction + "ausgeführt");
 
 
+
         } else {
 
             System.out.println("Transaktion nicht möglich da kein Stock is selected.");

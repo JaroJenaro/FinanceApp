@@ -116,5 +116,6 @@ public class BuyViewController {
     public void backToPortfolioScene(ActionEvent event) throws IOException {
 
         sceneSwitchService.backToPortfolioScene(event);
+
     }
 }
