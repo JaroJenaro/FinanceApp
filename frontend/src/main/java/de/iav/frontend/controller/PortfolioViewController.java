@@ -2,9 +2,12 @@
 
 package de.iav.frontend.controller;
 
+import de.iav.frontend.model.Stock;
 import de.iav.frontend.model.Transaction;
 import de.iav.frontend.model.TransactionType;
+import de.iav.frontend.model.User;
 import de.iav.frontend.service.PortfolioViewService;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -27,15 +31,10 @@ public class PortfolioViewController {
     @FXML
     public TableView<Transaction> portfolioTable;
     @FXML
-    public TableColumn <Transaction, String> symbolColumn;
+    public TableColumn <Transaction, String> companyName;
     @FXML
-    public TableColumn <Transaction, String>nameColumn;
-    @FXML
-    public TableColumn <Transaction, Integer>quantityColumn;
-    @FXML
-    public TableColumn <Transaction, Double>priceColumn;
-    @FXML
-    public TableColumn  <Transaction, Double>totalColumn;
+    public TableColumn <Transaction, Integer> quantity;
+    public TableColumn <Transaction, Double> price;
     @FXML
     public Button buyButton;
     @FXML
@@ -47,26 +46,38 @@ public class PortfolioViewController {
     @FXML
     public ListView<Transaction> listViewTransactions;
 
+
+
     public void initialize() {
         //String userId="12345";
 
         // Retrieve portfolio transactions for the user
         List<Transaction> portfolio = portfolioViewService.getAllTransactions();
         System.out.println(portfolio.toString());
-//        List<Transaction> allTransactions = portfolioViewService.getAllTransactions();
-//        System.out.println(allTransactions.toString());
-//
-//        // Create an ObservableList to store the portfolio transactions
-//        ObservableList<Transaction> portfolioList = FXCollections.observableArrayList(portfolio);
-        listViewTransactions.getItems().clear();
 
-        listViewTransactions.getItems().addAll(portfolio);
+        //stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        quantity.setCellValueFactory(data -> {
+            Integer quantity = data.getValue().quantity();
+            return Bindings.createObjectBinding(() -> quantity);
+        });
+        companyName.setCellValueFactory(data -> {
+            String companyName = data.getValue().stock().companyName();
+            return Bindings.createObjectBinding(() -> companyName);
+        });
 
- /*       portfolioTable.setItems(portfolioList);
-        //portfolioValue.setText(portfolioViewService.getPortfolioValue(userId).toString());
+        price.setCellValueFactory(data -> {
+            Double price = data.getValue().price();
+            return Bindings.createObjectBinding(() -> price);
+        });
+
+        // Fetch the data from the backend (replace this with your actual data retrieval)
 
 
-        portfolioTable.getSelectionModel()
+        // Add the data to the table
+        portfolioTable.getItems().addAll(portfolio);
+
+
+/*        portfolioTable.getSelectionModel()
                 .selectedItemProperty()
                 // Listener der etwas macht
                 .addListener(
@@ -76,7 +87,7 @@ public class PortfolioViewController {
 
                         }
                         }
-                );*/
+                )*/
     }
 
 
