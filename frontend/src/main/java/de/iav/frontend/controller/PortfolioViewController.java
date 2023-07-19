@@ -2,9 +2,9 @@
 
 package de.iav.frontend.controller;
 
-import de.iav.frontend.model.TransactionWithoutUser;
+import de.iav.frontend.model.Transaction;
+import de.iav.frontend.model.TransactionType;
 import de.iav.frontend.service.PortfolioViewService;
-import de.iav.frontend.service.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -25,17 +24,17 @@ import java.util.List;
 
 public class PortfolioViewController {
     @FXML
-    public TableView<TransactionWithoutUser> portfolioTable;
+    public TableView<Transaction> portfolioTable;
     @FXML
-    public TableColumn <TransactionWithoutUser, String> symbolColumn;
+    public TableColumn <Transaction, String> symbolColumn;
     @FXML
-    public TableColumn <TransactionWithoutUser, String>nameColumn;
+    public TableColumn <Transaction, String>nameColumn;
     @FXML
-    public TableColumn <TransactionWithoutUser, Integer>quantityColumn;
+    public TableColumn <Transaction, Integer>quantityColumn;
     @FXML
-    public TableColumn <TransactionWithoutUser, Double>priceColumn;
+    public TableColumn <Transaction, Double>priceColumn;
     @FXML
-    public TableColumn  <TransactionWithoutUser, Double>totalColumn;
+    public TableColumn  <Transaction, Double>totalColumn;
     @FXML
     public Button buyButton;
     @FXML
@@ -44,17 +43,21 @@ public class PortfolioViewController {
     public Text portfolioValue;
 
     private final PortfolioViewService portfolioViewService= PortfolioViewService.getInstance();
-    public void initialize(String userId) {
+    public void initialize() {
+        String userId="12345";
 
         // Retrieve portfolio transactions for the user
-        List<TransactionWithoutUser> portfolio = portfolioViewService.getAllTransactionsOfUser(userId);
+        List<Transaction> portfolio = portfolioViewService.getAllTransactionsOfUser(userId);
+        System.out.println(portfolio.toString());
+        List<Transaction> allTransactions = portfolioViewService.getAllTransactions();
+        System.out.println(allTransactions.toString());
 
         // Create an ObservableList to store the portfolio transactions
-        ObservableList<TransactionWithoutUser> portfolioList = FXCollections.observableArrayList(portfolio);
+        ObservableList<Transaction> portfolioList = FXCollections.observableArrayList(portfolio);
 
 
         portfolioTable.setItems(portfolioList);
-        portfolioValue.setText(portfolioViewService.getPortfolioValue(userId).toString());
+        //portfolioValue.setText(portfolioViewService.getPortfolioValue(userId).toString());
 
 
         portfolioTable.getSelectionModel()
@@ -70,12 +73,15 @@ public class PortfolioViewController {
                 );
     }
 
+
     @FXML
     public void openBuyView(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/BuyView.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        BuyViewController buyViewController = loader.getController();
+        //buyViewController.initialize();
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

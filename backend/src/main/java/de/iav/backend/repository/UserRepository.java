@@ -6,14 +6,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
 
 
-    List<User> findAllByFirstNameEqualsIgnoreCase(String firstName);
-    List<User> findAllByLastNameEqualsIgnoreCase(String lastName);
+    List<User> findAllById(String id);
 
 
 }

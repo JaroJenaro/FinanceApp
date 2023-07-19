@@ -7,8 +7,7 @@ public record User(
         String firstName,
         String lastName,
         String email,
-        String password,
-        List<TransactionWithoutUser> portfolio
+        String password
 
 ) {
 }

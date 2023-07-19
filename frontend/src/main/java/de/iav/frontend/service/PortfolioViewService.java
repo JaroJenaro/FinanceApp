@@ -3,7 +3,7 @@ package de.iav.frontend.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.iav.frontend.model.TransactionWithoutUser;
+import de.iav.frontend.model.Transaction;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -17,7 +17,7 @@ public class PortfolioViewService {
         private static PortfolioViewService instance;
         private final HttpClient httpClient;
         private final ObjectMapper objectMapper;
-        private List<TransactionWithoutUser> portfolio;
+        private List<Transaction> portfolio;
         private PortfolioViewService() {
             this.httpClient = HttpClient.newHttpClient();
             this.objectMapper = new ObjectMapper();
@@ -31,10 +31,10 @@ public class PortfolioViewService {
             return instance;
         }
 
-        public List<TransactionWithoutUser> getAllTransactionsOfUser(String userId) {
+        public List<Transaction> getAllTransactionsOfUser(String userId) {
             HttpRequest request = HttpRequest.newBuilder()
                     .GET()
-                    .uri(URI.create("http://localhost:8080/api/financeapp/user/"+userId+"portfolio"))
+                    .uri(URI.create("http://localhost:8080/api/financeapp/users/portfolio/"+userId))
                     .build();
 
             return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
@@ -43,7 +43,7 @@ public class PortfolioViewService {
                     .join();
         }
 
-        private List<TransactionWithoutUser> mapToTransactionsList(String responseBody) {
+        private List<Transaction> mapToTransactionsList(String responseBody) {
             try {
                 return objectMapper.readValue(responseBody, new TypeReference<>() {});
                 //return new ArrayList<Student>();
@@ -53,22 +53,22 @@ public class PortfolioViewService {
 
         }
 
-    public Double getPortfolioValue(String userId) {
+    public List<Transaction> getAllTransactions() {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/api/financeapp/user/"+userId+"portfoliovalue"))
+                .uri(URI.create("http://localhost:8080/api/financeapp/transactions"))
                 .build();
 
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
-                .thenApply(this::mapToPortfolio) // .thenApply(responseBody -> mapToStudent(responseBody))
+                .thenApply(this::mapToAllTransactionsList) // .thenApply(responseBody -> mapToStudent(responseBody))
                 .join();
     }
 
-    private Double mapToPortfolio(String responseBody) {
+    private List<Transaction> mapToAllTransactionsList(String responseBody) {
         try {
             return objectMapper.readValue(responseBody, new TypeReference<>() {});
-
+            //return new ArrayList<Student>();
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to map stocksList", e);
         }

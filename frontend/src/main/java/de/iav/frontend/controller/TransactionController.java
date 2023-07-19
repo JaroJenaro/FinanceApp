@@ -18,7 +18,7 @@ public class TransactionController {
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
 
     private Stock transactionStock;
-    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "1234", new ArrayList<>());
+    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "1234");
 
     @FXML
     public TextField tfCompany;
@@ -45,7 +45,7 @@ public class TransactionController {
 
         System.out.println(tfQuantity.getText() + " Aktien zum Preis von " + tfPrice.getText() + " für insgesamt " + tfSum.getText() + " kaufen. ");
 
-        TransactionWithoutIdDto transactionWithoutIdDto = new TransactionWithoutIdDto(TransactionType.BUY,
+        TransactionDTO transactionWithoutIdDto = new TransactionDTO(TransactionType.BUY,
                 LocalDateTime.now().toString(), user, transactionStock, quantity, price);
         Transaction buyTransaction = transactionService.addTransaction(transactionWithoutIdDto);
         System.out.println("buyTransaction: " + buyTransaction);

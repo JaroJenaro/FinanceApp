@@ -1,7 +1,10 @@
 package de.iav.backend.controller;
 
 
+import de.iav.backend.model.Stock;
 import de.iav.backend.model.Transaction;
+import de.iav.backend.model.TransactionDTO;
+import de.iav.backend.model.User;
 import de.iav.backend.service.TransactionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,16 +27,31 @@ public class TransactionController {
         return transactionService.getAllTransactions();
     }
 
+
     @GetMapping("/{id}")
     public Optional<Transaction> getTransactionById(@PathVariable String id) {
         return transactionService.getTransactionById(id);
     }
 
     @PostMapping
-    public Transaction executeTransactions(@RequestBody Transaction transaction) {
-        return transactionService.executeTransaction(transaction);
+    public Transaction executeTransactions(@RequestBody TransactionDTO transactionDTO) {
+        return transactionService.executeTransaction(transactionDTO);
     }
 
+    /*   @GetMapping
+       public List<Stock> getTransactionById(@RequestBody User user) {
+           return transactionService.getAllStocksByUser(user);
+       }
 
+     */
+    @GetMapping("/user")
+    public List<Stock> getAllStocksByUser(@RequestBody User user) {
+        return transactionService.getAllStocksByUser(user);
+    }
+
+    @GetMapping("/user/{id}")
+    public List<Transaction> getAllTransactionByUser(@PathVariable String id) {
+        return transactionService.getAllTransactionsByUserId(id);
+    }
 
 }

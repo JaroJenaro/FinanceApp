@@ -1,9 +1,12 @@
 package de.iav.backend.controller;
 
+import de.iav.backend.model.Transaction;
 import de.iav.backend.model.User;
 import de.iav.backend.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,36 +21,32 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllPets(){
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getPetById(@PathVariable String id){
+    public Optional<User> getUserById(@PathVariable String id) {
         return userService.getUserById(id);
     }
 
-    @GetMapping("/search")
-    public List<User> getPetsBySpecificSearch(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName ){
-
-        if(firstName != null)
-        {
-            return userService.findAllByFirstNameEqualsIgnoreCase(firstName);
-        }
-        else{
-            return userService.findAllByLastNameEqualsIgnoreCase(lastName);
-        }
+    @GetMapping("/portfolio/{id}")
+    public List<Transaction> getTransactionByUserById(@PathVariable String id) {
+        return userService.getAllTransactionsByUser(userService.getUserById(id));
+    }
+    @GetMapping("/set")
+    public List<User> setDefaultUsers() {
+        return userService.setUserByRepository();
     }
 
-
-
     @PostMapping
-    public User addUser(@RequestBody User user){
-        return userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User createdUser = userService.saveUser(user);
+        return ResponseEntity.created(URI.create("/users/" + createdUser.id())).body(createdUser);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable String id, @RequestBody User user){
+    public User updateUser(@PathVariable String id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
 

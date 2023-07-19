@@ -45,4 +45,48 @@ public class SceneSwitchService {
 
         stage.show();
     }
+
+    public void switchToBuyViewController(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/BuyView.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //TransactionController transactionsController = loader.getController();
+        //transactionsController.setStockDataInFields(stock);
+
+        Scene scene = new Scene(root);
+        stage.setTitle("Finance App! [Kaufen]");
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    public void switchToSellViewController(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/SellView.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //TransactionController transactionsController = loader.getController();
+        //transactionsController.setStockDataInFields(stock);
+
+        Scene scene = new Scene(root);
+        stage.setTitle("Finance App! [Verkaufen]");
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    public void backToPortfolioScene(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/portfolioView.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+        Scene scene = new Scene(root);
+        //stage.setTitle("Finance App! [Kaufen]");
+        stage.setScene(scene);
+
+        stage.show();
+    }
 }
