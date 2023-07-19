@@ -77,7 +77,7 @@ public class PortfolioViewController {
         portfolioTable.getItems().addAll(portfolio);
 
 
-/*        portfolioTable.getSelectionModel()
+        portfolioTable.getSelectionModel()
                 .selectedItemProperty()
                 // Listener der etwas macht
                 .addListener(
@@ -87,7 +87,7 @@ public class PortfolioViewController {
 
                         }
                         }
-                )*/
+                );
     }
 
 
