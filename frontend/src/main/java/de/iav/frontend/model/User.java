@@ -1,6 +1,5 @@
 package de.iav.frontend.model;
 
-import java.util.List;
 
 public record User(
         String id,

@@ -10,6 +10,6 @@ public record Transaction(
         Double price) {
 
     public String toString(){
-        return id+"  "+user.firstName()+"  "+stock.companyName();
+        return id + "  " + user.firstName() + "  " + stock.companyName();
     }
 }
