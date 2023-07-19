@@ -1,6 +1,7 @@
 package de.iav.backend.controller;
 
 import de.iav.backend.model.Transaction;
+
 import de.iav.backend.model.User;
 import de.iav.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,7 @@ public class UserController {
         User createdUser = userService.saveUser(user);
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }
+
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable String id, @RequestBody User user) {
