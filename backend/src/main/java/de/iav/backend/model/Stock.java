@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Stock{
 
 
+
         @MongoId
         String ISIN;
         String WKN;
