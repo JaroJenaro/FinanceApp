@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class TransactionController {
 
@@ -71,8 +70,8 @@ public class TransactionController {
     public void setStockDataInFields(Stock stock) {
         tfCompany.setText(stock.companyName());
         tfStockTicker.setText(stock.stockTicker());
-        tfISIN.setText(stock.ISIN());
-        tfWKN.setText(stock.WKN());
+        tfISIN.setText(stock.isin());
+        tfWKN.setText(stock.wkn());
         transactionStock = stock;
     }
 }

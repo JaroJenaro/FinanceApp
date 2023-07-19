@@ -1,5 +1,6 @@
 package de.iav.frontend.service;
 
+import de.iav.frontend.controller.PortfolioViewController;
 import de.iav.frontend.controller.TransactionController;
 import de.iav.frontend.model.Stock;
 import javafx.event.ActionEvent;

@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
@@ -43,20 +44,25 @@ public class PortfolioViewController {
     public Text portfolioValue;
 
     private final PortfolioViewService portfolioViewService= PortfolioViewService.getInstance();
+    @FXML
+    public ListView<Transaction> listViewTransactions;
+
     public void initialize() {
-        String userId="12345";
+        //String userId="12345";
 
         // Retrieve portfolio transactions for the user
-        List<Transaction> portfolio = portfolioViewService.getAllTransactionsOfUser(userId);
+        List<Transaction> portfolio = portfolioViewService.getAllTransactions();
         System.out.println(portfolio.toString());
-        List<Transaction> allTransactions = portfolioViewService.getAllTransactions();
-        System.out.println(allTransactions.toString());
+//        List<Transaction> allTransactions = portfolioViewService.getAllTransactions();
+//        System.out.println(allTransactions.toString());
+//
+//        // Create an ObservableList to store the portfolio transactions
+//        ObservableList<Transaction> portfolioList = FXCollections.observableArrayList(portfolio);
+        listViewTransactions.getItems().clear();
 
-        // Create an ObservableList to store the portfolio transactions
-        ObservableList<Transaction> portfolioList = FXCollections.observableArrayList(portfolio);
+        listViewTransactions.getItems().addAll(portfolio);
 
-
-        portfolioTable.setItems(portfolioList);
+ /*       portfolioTable.setItems(portfolioList);
         //portfolioValue.setText(portfolioViewService.getPortfolioValue(userId).toString());
 
 
@@ -70,7 +76,7 @@ public class PortfolioViewController {
 
                         }
                         }
-                );
+                );*/
     }
 
 

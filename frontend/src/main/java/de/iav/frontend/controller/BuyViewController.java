@@ -51,10 +51,11 @@ public class BuyViewController {
     public void showAllStocks() {
         lv_stocks.getItems().clear();
         System.out.println("showAllStocks");
-        lv_stocks.getItems().addAll(stockService.getAllStocks());
-        System.out.println("showAllUsers");
         cb_users.getItems().addAll(userService.getAllUsers());
         System.out.println("showAllStocks");
+        lv_stocks.getItems().addAll(stockService.getAllStocks());
+        System.out.println("showAllUsers"+stockService.getAllStocks());
+
 
         lv_stocks.getSelectionModel()
                 .selectedItemProperty()
@@ -65,12 +66,13 @@ public class BuyViewController {
                 });
     }
 
-    //private PortfolioViewController portfolioViewController;
+/*    private PortfolioViewController portfolioViewController;
 
     // Inject the PortfolioViewController instance
-/*    public void setPortfolioViewController(PortfolioViewController portfolioViewController) {
-        this.portfolioViewController = portfolioViewController;
-    }*/
+    @FXML
+    public void setPortfolioViewController(PortfolioViewController portfolioViewController) {
+        this.portfolioViewController = portfolioViewController;}*/
+
     @FXML
     public void calculateSum(ActionEvent event) {
         System.out.println("calculateSum");
@@ -81,7 +83,7 @@ public class BuyViewController {
     }
 
     @FXML
-    public void doBuyStockTransaction() {
+    public void doBuyStockTransaction(ActionEvent event) {
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
 
@@ -112,6 +114,7 @@ public class BuyViewController {
     }
 
     public void backToPortfolioScene(ActionEvent event) throws IOException {
+
         sceneSwitchService.backToPortfolioScene(event);
     }
 }

@@ -19,5 +19,5 @@
     <TextField fx:id="tf_price" layoutX="149.0" layoutY="265.0" onAction="#calculateSum" />
     <TextField fx:id="tf_sum" layoutX="149.0" layoutY="291.0" />
     <Button fx:id="sellButton" layoutX="334.0" layoutY="354.0" mnemonicParsing="false" onAction="#doSceneChange" prefHeight="25.0" prefWidth="217.0" text="Wechseln ins VERKAUF Maske" />
-   <Button fx:id="backToPortfolio" layoutX="427.0" layoutY="266.0" mnemonicParsing="false" text="back to Portfolio" onAction="#backToPortfolioScene" />
+   <Button  layoutX="427.0" layoutY="266.0" mnemonicParsing="false" text="back to Portfolio" onAction="#backToPortfolioScene" />
 </AnchorPane>
