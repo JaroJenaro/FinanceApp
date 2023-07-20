@@ -27,6 +27,7 @@ public class UserService {
         return instance;
     }
 
+    //wird später benötigt zur Darstellung alle User für den Admin
     public List<User> getAllUsers() {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
