@@ -7,10 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.logging.Logger;
 
 public class SellViewController {
 
@@ -31,7 +32,7 @@ public class SellViewController {
     int quantity;
     double price;
 
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final Logger LOG = LogManager.getLogger();
 
 
     public void initialize() {
@@ -42,13 +43,13 @@ public class SellViewController {
     public void showAllStocks() {
 
 
-        logger.fine("showAllStocks");
+        LOG.info("showAllStocks");
     }
 
 
     public void calculateSum() {
 
-        logger.fine("calculateSum");
+        LOG.info("calculateSum");
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
         double sum = quantity * price;
@@ -66,18 +67,18 @@ public class SellViewController {
                 quantity > 0 &&
                 price > 0
         ) {
-            logger.fine("Bereit zum Verkaufen User: " + user);
-            logger.fine("verkauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
-            logger.fine(" für insgesamt " + tf_sum.getText());
+            LOG.info("Bereit zum Verkaufen User: " + user);
+            LOG.info("verkauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
+            LOG.info(" für insgesamt " + tf_sum.getText());
             TransactionWithoutIdDTO transactionWithoutIdDto = new TransactionWithoutIdDTO(TransactionType.SELL,
                     LocalDateTime.now().toString(), user, lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction sellTransaction = transactionService.addTransaction(transactionWithoutIdDto);
-            logger.fine("sellTransaction: " + sellTransaction + "ausgeführt");
+            LOG.info("sellTransaction: " + sellTransaction + "ausgeführt");
 
 
         } else {
 
-            logger.info("Transaktion nicht möglich da kein Stock is selected.");
+            LOG.info("Transaktion nicht möglich da kein Stock is selected.");
         }
     }
 

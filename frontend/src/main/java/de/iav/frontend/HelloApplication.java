@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.logging.Logger;
+
 
 public class HelloApplication extends Application {
     @Override
@@ -20,11 +20,8 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-        logger.config("Konfigurationshinweis");
-        logger.fine("Application gestartet");
-        logger.finer("Feiner");
-        logger.finest("Am feinsten");
+
+
         launch();
     }
 }

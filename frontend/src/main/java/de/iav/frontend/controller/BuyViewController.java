@@ -12,10 +12,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.logging.Logger;
 
 public class BuyViewController {
 
@@ -26,8 +27,6 @@ public class BuyViewController {
     @FXML
     public ListView<Stock> lv_stocks;
 
-    //@FXML
-    //public ComboBox<User> cb_users;
     @FXML
     public Label l_user;
 
@@ -45,28 +44,28 @@ public class BuyViewController {
 
     int quantity;
     double price;
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static final Logger LOG = LogManager.getLogger();
 
 
     public void initialize() {
-        logger.info("---->BuyViewController public void initialize");
+        LOG.info("---->BuyViewController public void initialize");
         showAllStocks();
     }
 
 
     public void showAllStocks() {
         lv_stocks.getItems().clear();
-        logger.info("showAllStocks");
+        LOG.info("showAllStocks");
 
         lv_stocks.getItems().addAll(stockService.getAllStocks());
-        logger.info("showAllUsers {}");
+        LOG.info("showAllUsers");
     }
 
 
 
     @FXML
     public void calculateSum() {
-        logger.fine("calculateSum");
+        LOG.info("calculateSum");
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
         double sum = quantity * price;
@@ -84,16 +83,16 @@ public class BuyViewController {
                 quantity > 0 &&
                 price > 0
         ) {
-            logger.fine(String.format("Bereit zum Kaufen User: %s", user));
-            logger.fine(String.format("kauft %d Aktien von %s zum Preis von %f", quantity, lv_stocks.getSelectionModel().getSelectedItem(), price));
-            logger.fine(String.format("für insgesamt %s", tf_sum.getText()));
+            LOG.info("Bereit zum Kaufen User: {}}", user);
+            LOG.info("kauft {} Aktien von {} zum Preis von {}", quantity, lv_stocks.getSelectionModel().getSelectedItem(), price);
+            LOG.info("für insgesamt {}", tf_sum.getText());
             TransactionWithoutIdDTO transactionDTO = new TransactionWithoutIdDTO(TransactionType.BUY,
                     LocalDateTime.now().toString(), user, lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction buyTransaction = transactionService.addTransaction(transactionDTO);
 
-            logger.fine(String.format("buyTransaction: %s ausgeführt", buyTransaction));
+            LOG.info("buyTransaction: {} ausgeführt", buyTransaction);
         } else {
-            logger.info("Transaktion nicht möglich da kein Stock is selected.");
+            LOG.info("Transaktion nicht möglich da kein Stock is selected.");
         }
     }
     @FXML
@@ -107,24 +106,24 @@ public class BuyViewController {
     }
 
     public void setUserForBuying(User user) {
-        logger.fine(String.format("setUserForBuying(User user) { user: %s", user));
+        LOG.info("setUserForBuying(User user)  user: {}", user);
         this.user = user;
-        logger.fine(String.format("setUserForBuying(User user) { user: %s", this.user));
+        LOG.info("setUserForBuying(User user) { user: {}", this.user);
         l_user.setText(user.toString());
     }
 
     public void stockChanged() {
-        logger.fine(String.valueOf(lv_stocks.getSelectionModel().getSelectedItem()));
+        LOG.info(lv_stocks.getSelectionModel().getSelectedItem());
         price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker());
-        logger.fine(String.format("Price: %f", price));
+        LOG.info("Price: {}", price);
         tf_price.setText(String.valueOf(price));
 
     }
 
     public void stockChangedKey(KeyEvent keyEvent) {
-        logger.fine("stockChangedKey");
+        LOG.info("stockChangedKey");
         if (keyEvent.getCode() == KeyCode.getKeyCode("s"))
-            logger.fine(String.valueOf(lv_stocks.getSelectionModel().getSelectedItem()));
+            LOG.info(lv_stocks.getSelectionModel().getSelectedItem());
     }
 
     public void neuAnmelden(ActionEvent event) throws IOException {
