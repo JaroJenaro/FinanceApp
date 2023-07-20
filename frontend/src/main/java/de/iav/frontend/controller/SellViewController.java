@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SellViewController {
@@ -36,8 +35,6 @@ public class SellViewController {
 
 
     public void initialize() {
-
-        logger.setLevel(Level.ALL);
         showAllStocks();
     }
 

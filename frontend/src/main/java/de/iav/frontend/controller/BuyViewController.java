@@ -15,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BuyViewController {
@@ -50,7 +49,6 @@ public class BuyViewController {
 
 
     public void initialize() {
-        logger.setLevel(Level.ALL);
         logger.info("---->BuyViewController public void initialize");
         showAllStocks();
     }
@@ -61,9 +59,10 @@ public class BuyViewController {
         logger.info("showAllStocks");
 
         lv_stocks.getItems().addAll(stockService.getAllStocks());
-        logger.info("showAllUsers" + stockService.getAllStocks());
-        logger.info("!!!!!!!!!!!!!!" + this.user);
-        logger.info("showAllStocks: " + user);
+        logger.info("showAllUsers {}");
+        logger.info(stockService.getAllStocks().toString());
+        logger.info(this.user.toString());
+        logger.info(user.toString());
     }
 
 
