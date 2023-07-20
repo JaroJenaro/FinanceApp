@@ -5,8 +5,8 @@
             prefWidth="600.0"
             xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="de.iav.frontend.controller.UserController">
-   <children>
-      <Label layoutX="220.0" layoutY="25.0" prefHeight="27.0" prefWidth="160.0" text="Register User"/>
+
+<Label layoutX="220.0" layoutY="25.0" prefHeight="27.0" prefWidth="160.0" text="Register User"/>
       <Label layoutX="42.0" layoutY="69.0" text="First Name"/>
       <Label layoutX="42.0" layoutY="115.0" text="Last Name"/>
       <Label layoutX="42.0" layoutY="160.0" text="email address"/>
@@ -19,5 +19,5 @@
               prefHeight="25.0" prefWidth="80.0" text="Sign Up"/>
       <Button layoutX="479.0" layoutY="289.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="25.0"
               prefWidth="80.0" text="Back"/>
-   </children>
+
 </AnchorPane>

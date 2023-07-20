@@ -136,4 +136,8 @@ public class BuyViewController {
         if (keyEvent.getCode() == KeyCode.getKeyCode("s"))
             System.out.println(lv_stocks.getSelectionModel().getSelectedItem());
     }
+
+    public void neuAnmelden(ActionEvent event) throws IOException {
+        sceneSwitchService.switchToUserSignIn(event);
+    }
 }

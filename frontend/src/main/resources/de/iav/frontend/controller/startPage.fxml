@@ -5,7 +5,6 @@
             prefWidth="408.0"
             xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="de.iav.frontend.controller.StartPageController">
-   <children>
       <Label layoutX="55.0" layoutY="59.0" text="Email address"/>
       <TextField fx:id="email" layoutX="141.0" layoutY="55.0"/>
       <Label layoutX="55.0" layoutY="100.0" text="Password"/>
@@ -17,5 +16,4 @@
       <Label fx:id="informationForUser" layoutX="131.0" layoutY="141.0" prefHeight="17.0" prefWidth="178.0"/>
       <Button layoutX="275.0" layoutY="146.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0"
               prefWidth="93.0" text="Delete User"/>
-   </children>
 </AnchorPane>

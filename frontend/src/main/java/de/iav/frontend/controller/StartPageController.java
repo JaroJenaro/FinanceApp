@@ -1,18 +1,14 @@
 package de.iav.frontend.controller;
 
 import de.iav.frontend.model.User;
+import de.iav.frontend.model.UserWithoutIdDto;
 import de.iav.frontend.service.SceneSwitchService;
 import de.iav.frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -54,11 +50,14 @@ public class StartPageController {
     }
 
     public void signUpButtonPressed(ActionEvent actionEvent) throws IOException {
-        UserService userService = new UserService();
+
         System.out.println(userService.getUserByEmail(email.getText()) != null);
         if (userService.getUserByEmail(email.getText()) != null) {
             informationForUser.setText("This email already exists, sign in instead");
         } else {
+            UserWithoutIdDto userWithoutIdDto = new UserWithoutIdDto("getName", "getName", email.getText(), password.getText());
+            sceneSwitchService.switchToUserController(actionEvent, userWithoutIdDto);
+            /*
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/user.fxml")); // Jeweiliges FXML laden
             Parent root = loader.load();
             UserController userController = loader.getController();
@@ -66,14 +65,13 @@ public class StartPageController {
             Scene scene = new Scene(root);
             stage.setScene(scene); // Neue Szenen setzen
             stage.show(); // ... und einblenden
-            //System.out.println("dddddd"+email.getText());
             userController.email.setText(email.getText());
-            userController.password.setText(password.getText());
+            userController.password.setText(password.getText());*/
+
         }
     }
 
-    public void deleteUser(ActionEvent actionEvent) {
-        //System.out.println(email.getText());
+    public void deleteUser() {
         if (email.getText().isEmpty() || email.getText().isBlank()) {
             informationForUser.setText("Please enter email");
         } else {
