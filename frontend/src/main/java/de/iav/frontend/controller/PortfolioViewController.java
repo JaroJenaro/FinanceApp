@@ -5,25 +5,21 @@ package de.iav.frontend.controller;
 import de.iav.frontend.model.Transaction;
 import de.iav.frontend.model.User;
 import de.iav.frontend.service.PortfolioViewService;
-import de.iav.frontend.service.StockService;
+import de.iav.frontend.service.SceneSwitchService;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
 
 public class PortfolioViewController {
+    private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
     @FXML
     public TableView<Transaction> portfolioTable;
     @FXML
@@ -41,7 +37,7 @@ public class PortfolioViewController {
     public Text portfolioValue;
 
     private final PortfolioViewService portfolioViewService = PortfolioViewService.getInstance();
-    private final StockService stockService = StockService.getInstance();
+
     @FXML
     public ListView<Transaction> listViewTransactions;
 
@@ -63,7 +59,7 @@ public class PortfolioViewController {
             String companyName = data.getValue().stock().companyName();
             return Bindings.createObjectBinding(() -> companyName);
         });
-        System.out.println(stockService.getStockPrice(portfolio.get(0).stock().stockTicker()));
+        //System.out.println(stockService.getStockPrice(portfolio.get(0).stock().stockTicker()));
 
 /*        price.setCellValueFactory(data -> {
             Double price = stockService.getStockPrice(data.getValue().stock().stockTicker());
@@ -93,32 +89,17 @@ public class PortfolioViewController {
 
     @FXML
     public void openBuyView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/BuyView.fxml"));
-        Parent root = loader.load();
+        System.out.println("public void openBuyView(ActionEvent event) throws IOException { user: " + user);
+        sceneSwitchService.switchToBuyViewController(event, user);
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        BuyViewController buyViewController = loader.getController();
-        //buyViewController.initialize();
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        stage.show();
     }
 
     public void openSellView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/SellView.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-
-        stage.show();
+        sceneSwitchService.switchToSellViewController(event, user);
     }
 
     public void setUserForPortfolio(User user) {
+
         this.user = user;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.iav.frontend.model.User;
+import de.iav.frontend.model.UserWithoutIdDto;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -26,6 +27,7 @@ public class UserService {
         return instance;
     }
 
+    //wird später benötigt zur Darstellung alle User für den Admin
     public List<User> getAllUsers() {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -37,9 +39,9 @@ public class UserService {
                 .join();
     }
 
-    public User addUser(User user) {
+    public User addUser(UserWithoutIdDto userWithoutIdDto) {
         try {
-            String requestBody = objectMapper.writeValueAsString(user);
+            String requestBody = objectMapper.writeValueAsString(userWithoutIdDto);
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/financeapp/users"))
                     .header("Content-Type", "application/json")
@@ -71,6 +73,7 @@ public class UserService {
             throw new RuntimeException("Failed to map stock", e);
         }
     }
+
 
     public User getUserByEmail(String email) {
         HttpRequest request = HttpRequest.newBuilder()

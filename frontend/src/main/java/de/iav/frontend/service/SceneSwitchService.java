@@ -1,11 +1,9 @@
 package de.iav.frontend.service;
 
-import de.iav.frontend.controller.BuyViewController;
-import de.iav.frontend.controller.PortfolioViewController;
-import de.iav.frontend.controller.SellViewController;
-import de.iav.frontend.controller.TransactionController;
+import de.iav.frontend.controller.*;
 import de.iav.frontend.model.Stock;
 import de.iav.frontend.model.User;
+import de.iav.frontend.model.UserWithoutIdDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -27,7 +25,7 @@ public class SceneSwitchService {
     }
 
     public void switchToUserSignIn(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/user.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/startPage.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
@@ -36,9 +34,14 @@ public class SceneSwitchService {
         stage.show();
     }
 
-    public void switchToUserController(ActionEvent actionEvent) throws IOException {
+    public void switchToUserController(ActionEvent actionEvent, UserWithoutIdDto userWithoutIdDto) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/user.fxml"));
         Parent root = loader.load();
+
+
+        UserController userController = loader.getController();
+        System.out.println("  ----> public void switchToUserController(ActionEvent actionEvent, UserWithoutIdDto userWithoutIdDto) throws IOException {: " + userWithoutIdDto);
+        userController.setUserWithoutIdDtoForSignIn(userWithoutIdDto);
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -71,11 +74,13 @@ public class SceneSwitchService {
     }
 
     public void switchToBuyViewController(ActionEvent event, User user) throws IOException {
+        System.out.println("  ----> public void switchToBuyViewController(ActionEvent event, User user) throws IOException {: " + user);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/BuyView.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         BuyViewController buyViewController = loader.getController();
+        System.out.println("  ----> public void switchToBuyViewController(ActionEvent event, User user) throws IOException {: " + user);
         buyViewController.setUserForBuying(user);
 
         Scene scene = new Scene(root);

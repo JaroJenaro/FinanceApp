@@ -9,6 +9,7 @@ import de.iav.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,15 +33,22 @@ public class TransactionService {
     }
 
     public Transaction executeTransaction(TransactionWithoutIdDTO transactionWithoutIdDTO) {
-        Transaction transactionToSave= transactionWithoutIdDTO.getTransactionWithoutId();
-        System.out.println(transactionToSave+"transactionToSave");
+        Transaction transactionToSave = transactionWithoutIdDTO.getTransactionWithoutId();
+        System.out.println(transactionToSave + "transactionToSave");
         Transaction executedTransaction = transactionRepository.save(transactionToSave);
         System.out.println("executedTransaction: " + executedTransaction);
         return executedTransaction;
     }
 
-    public List<Stock> getAllStocksByUser(User user) {
-        return transactionRepository.findAllByUser(user);
+    public List<Stock> getAllStocksByUser(String id) {
+        List<Stock> userStockList = new ArrayList<>();
+        for (Transaction transaction : transactionRepository.findAllByUserId(id)
+        ) {
+            if (transaction.getUser().getId().equals(id))
+                userStockList.add(transaction.getStock());
+
+        }
+        return userStockList;
     }
 
 
