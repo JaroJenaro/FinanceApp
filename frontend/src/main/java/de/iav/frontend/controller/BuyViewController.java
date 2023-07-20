@@ -29,6 +29,8 @@ public class BuyViewController {
 
     @FXML
     public ComboBox<User> cb_users;
+
+    private User user;
     @FXML
     public TextField tf_quantity;
     @FXML
@@ -116,8 +118,12 @@ public class BuyViewController {
 
     public void backToPortfolioScene(ActionEvent event) throws IOException {
 
-        sceneSwitchService.switchToPortfolioScene(event, cb_users.getSelectionModel().getSelectedItem());
+        //sceneSwitchService.switchToPortfolioScene(event, cb_users.getSelectionModel().getSelectedItem());
+        sceneSwitchService.switchToPortfolioScene(event, user);
+    }
 
+    public void setUserForBuying(User user) {
+        this.user = user;
     }
 
     public void stockChanged(MouseEvent mouseEvent) {
