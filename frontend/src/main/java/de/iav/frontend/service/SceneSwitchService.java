@@ -1,5 +1,8 @@
 package de.iav.frontend.service;
 
+import de.iav.frontend.controller.BuyViewController;
+import de.iav.frontend.controller.PortfolioViewController;
+import de.iav.frontend.controller.SellViewController;
 import de.iav.frontend.controller.TransactionController;
 import de.iav.frontend.model.Stock;
 import de.iav.frontend.model.User;
@@ -72,8 +75,8 @@ public class SceneSwitchService {
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        //TransactionController transactionsController = loader.getController();
-        //transactionsController.setStockDataInFields(stock);
+        BuyViewController buyViewController = loader.getController();
+        buyViewController.setUserForBuying(user);
 
         Scene scene = new Scene(root);
         stage.setTitle("Finance App! [Kaufen]");
@@ -87,8 +90,9 @@ public class SceneSwitchService {
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        //TransactionController transactionsController = loader.getController();
-        //transactionsController.setStockDataInFields(stock);
+
+        SellViewController sellViewController = loader.getController();
+        sellViewController.setUserForSelling(user);
 
         Scene scene = new Scene(root);
         stage.setTitle("Finance App! [Verkaufen]");
@@ -103,6 +107,8 @@ public class SceneSwitchService {
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        PortfolioViewController portfolioViewController = loader.getController();
+        portfolioViewController.setUserForPortfolio(user);
 
         Scene scene = new Scene(root);
         //stage.setTitle("Finance App! [Kaufen]");

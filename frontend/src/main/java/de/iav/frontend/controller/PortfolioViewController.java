@@ -2,15 +2,11 @@
 
 package de.iav.frontend.controller;
 
-import de.iav.frontend.model.Stock;
 import de.iav.frontend.model.Transaction;
-import de.iav.frontend.model.TransactionType;
 import de.iav.frontend.model.User;
 import de.iav.frontend.service.PortfolioViewService;
 import de.iav.frontend.service.StockService;
 import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -32,19 +27,21 @@ public class PortfolioViewController {
     @FXML
     public TableView<Transaction> portfolioTable;
     @FXML
-    public TableColumn <Transaction, String> companyName;
+    public TableColumn<Transaction, String> companyName;
     @FXML
-    public TableColumn <Transaction, Integer> quantity;
-    public TableColumn <Transaction, Double> price;
+    public TableColumn<Transaction, Integer> quantity;
+    public TableColumn<Transaction, Double> price;
     @FXML
     public Button buyButton;
+
+    private User user;
     @FXML
     public Button sellButton;
     @FXML
     public Text portfolioValue;
 
-    private final PortfolioViewService portfolioViewService= PortfolioViewService.getInstance();
-    private final StockService stockService=StockService.getInstance();
+    private final PortfolioViewService portfolioViewService = PortfolioViewService.getInstance();
+    private final StockService stockService = StockService.getInstance();
     @FXML
     public ListView<Transaction> listViewTransactions;
 
@@ -119,6 +116,10 @@ public class PortfolioViewController {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    public void setUserForPortfolio(User user) {
+        this.user = user;
     }
 }
 

@@ -25,6 +25,8 @@ public class SellViewController {
 
     @FXML
     public ComboBox<User> cb_users;
+
+    private User user;
     @FXML
     public TextField tf_quantity;
     @FXML
@@ -93,10 +95,13 @@ public class SellViewController {
             System.out.println("sellTransaction: " + sellTransaction + "ausgeführt");
 
 
-
         } else {
 
             System.out.println("Transaktion nicht möglich da kein Stock is selected.");
         }
+    }
+
+    public void setUserForSelling(User user) {
+        this.user = user;
     }
 }
