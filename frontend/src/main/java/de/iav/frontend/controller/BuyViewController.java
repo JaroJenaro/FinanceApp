@@ -15,6 +15,8 @@ import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BuyViewController {
 
@@ -44,36 +46,31 @@ public class BuyViewController {
 
     int quantity;
     double price;
-
-    //public FXCollections observableArrayList;
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 
     public void initialize() {
-        System.out.println("---->BuyViewController public void initialize");
+        logger.setLevel(Level.ALL);
+        logger.info("---->BuyViewController public void initialize");
         showAllStocks();
     }
 
 
     public void showAllStocks() {
         lv_stocks.getItems().clear();
-        System.out.println("showAllStocks");
-        //cb_users.getItems().addAll(userService.getAllUsers());
-        //System.out.println("showAllStocks");
+        logger.info("showAllStocks");
+
         lv_stocks.getItems().addAll(stockService.getAllStocks());
-        System.out.println("showAllUsers" + stockService.getAllStocks());
-        System.out.println("!!!!!!!!!!!!!!" + this.user);
-        System.out.println("showAllStocks: " + user);
-        //System.out.println("showAllStocks: " + user.toString());
-        //l_user.setText(user.toString());
-
-
+        logger.info("showAllUsers" + stockService.getAllStocks());
+        logger.info("!!!!!!!!!!!!!!" + this.user);
+        logger.info("showAllStocks: " + user);
     }
 
 
 
     @FXML
     public void calculateSum() {
-        System.out.println("calculateSum");
+        logger.fine("calculateSum");
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
         double sum = quantity * price;
@@ -91,16 +88,16 @@ public class BuyViewController {
                 quantity > 0 &&
                 price > 0
         ) {
-            System.out.println("Bereit zum Kaufen User: " + user);
-            System.out.println("kauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
-            System.out.println(" für insgesamt " + tf_sum.getText());
+            logger.fine("Bereit zum Kaufen User: " + user);
+            logger.fine("kauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
+            logger.fine(" für insgesamt " + tf_sum.getText());
             TransactionWithoutIdDTO transactionDTO = new TransactionWithoutIdDTO(TransactionType.BUY,
                     LocalDateTime.now().toString(), user, lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction buyTransaction = transactionService.addTransaction(transactionDTO);
 
-            System.out.println("buyTransaction: " + buyTransaction + "ausgeführt");
+            logger.fine("buyTransaction: " + buyTransaction + "ausgeführt");
         } else {
-            System.out.println("Transaktion nicht möglich da kein Stock is selected.");
+            logger.info("Transaktion nicht möglich da kein Stock is selected.");
         }
     }
     @FXML
@@ -110,31 +107,29 @@ public class BuyViewController {
     }
 
     public void backToPortfolioScene(ActionEvent event) throws IOException {
-
-        //sceneSwitchService.switchToPortfolioScene(event, cb_users.getSelectionModel().getSelectedItem());
         sceneSwitchService.switchToPortfolioScene(event, user);
     }
 
     public void setUserForBuying(User user) {
-        System.out.println("setUserForBuying(User user) { user: " + user);
+        logger.fine("setUserForBuying(User user) { user: " + user);
         this.user = user;
-        System.out.println("setUserForBuying(User user) { user: " + this.user);
-        System.out.println("showAllStocks: " + user.toString());
+        logger.fine("setUserForBuying(User user) { user: " + this.user);
+        logger.fine("showAllStocks: " + user.toString());
         l_user.setText(user.toString());
     }
 
     public void stockChanged() {
-        System.out.println(lv_stocks.getSelectionModel().getSelectedItem());
+        logger.fine(String.valueOf(lv_stocks.getSelectionModel().getSelectedItem()));
         price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker());
-        System.out.println("Price: " + price);
+        logger.fine("Price: " + price);
         tf_price.setText(String.valueOf(price));
 
     }
 
     public void stockChangedKey(KeyEvent keyEvent) {
-        System.out.println("test");
+        logger.fine("test");
         if (keyEvent.getCode() == KeyCode.getKeyCode("s"))
-            System.out.println(lv_stocks.getSelectionModel().getSelectedItem());
+            logger.fine(String.valueOf(lv_stocks.getSelectionModel().getSelectedItem()));
     }
 
     public void neuAnmelden(ActionEvent event) throws IOException {
