@@ -1,7 +1,6 @@
 package de.iav.backend.controller;
 
 import de.iav.backend.model.Transaction;
-
 import de.iav.backend.model.User;
 import de.iav.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/financeapp/users")
 public class UserController {
-
     private final UserService userService;
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -31,10 +27,16 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("email/{email}")
+    public Optional<User> getUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
+    }
+
     @GetMapping("/portfolio/{id}")
     public List<Transaction> getTransactionByUserById(@PathVariable String id) {
         return userService.getAllTransactionsByUser(userService.getUserById(id));
     }
+
     @GetMapping("/set")
     public List<User> setDefaultUsers() {
         return userService.setUserByRepository();
@@ -45,16 +47,12 @@ public class UserController {
         User createdUser = userService.saveUser(user);
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }
-
-
     @PutMapping("/{id}")
     public User updateUser(@PathVariable String id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
-
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable String id){
         userService.deleteUser(id);
     }
-
 }

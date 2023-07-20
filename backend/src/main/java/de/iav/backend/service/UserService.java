@@ -45,13 +45,19 @@ public class UserService {
     public User saveUser(User user) {
         return userRepository.save(user);
     }
+
     public List<User> setUserByRepository() {
         if (userRepository.findAll().size() == 0)
             return fillDataWithUsers();
         else
             return userRepository.findAll();
     }
+
     private List<User> fillDataWithUsers() {
         return userRepository.saveAll(tempUsers);
+    }
+
+    public Optional<User> getUserByEmail(String email) {
+        return Optional.ofNullable(userRepository.findByEmail(email));
     }
 }

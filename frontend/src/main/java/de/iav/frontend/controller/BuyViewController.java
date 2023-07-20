@@ -11,6 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -84,6 +87,7 @@ public class BuyViewController {
 
     @FXML
     public void doBuyStockTransaction(ActionEvent event) {
+
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
 
@@ -100,22 +104,33 @@ public class BuyViewController {
             Transaction buyTransaction = transactionService.addTransaction(transactionDTO);
 
             System.out.println("buyTransaction: " + buyTransaction + "ausgeführt");
-
-
-           // portfolioViewController.updatePortfolioData(cb_users.getSelectionModel().getSelectedItem(), lv_stocks.getSelectionModel().getSelectedItem());
         } else {
             System.out.println("Transaktion nicht möglich da kein Stock is selected.");
         }
     }
     @FXML
     public void doSceneChange(ActionEvent event) throws IOException {
-        sceneSwitchService.switchToSellViewController(event);
+        sceneSwitchService.switchToSellViewController(event, cb_users.getSelectionModel().getSelectedItem());
 
     }
 
     public void backToPortfolioScene(ActionEvent event) throws IOException {
 
-        sceneSwitchService.backToPortfolioScene(event);
+        sceneSwitchService.switchToPortfolioScene(event, cb_users.getSelectionModel().getSelectedItem());
 
+    }
+
+    public void stockChanged(MouseEvent mouseEvent) {
+        System.out.println(lv_stocks.getSelectionModel().getSelectedItem());
+        price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker());
+        System.out.println("Price: " + price);
+        tf_price.setText(String.valueOf(price));
+
+    }
+
+    public void stockChangedKey(KeyEvent keyEvent) {
+        System.out.println("test");
+        if (keyEvent.getCode() == KeyCode.getKeyCode("s"))
+            System.out.println(lv_stocks.getSelectionModel().getSelectedItem());
     }
 }
