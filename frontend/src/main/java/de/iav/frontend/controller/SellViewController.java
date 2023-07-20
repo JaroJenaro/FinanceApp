@@ -74,7 +74,7 @@ public class SellViewController {
     }
 
     public void doSceneChange(ActionEvent event) throws IOException {
-        sceneSwitchService.switchToBuyViewController(event);
+        sceneSwitchService.switchToBuyViewController(event, cb_users.getSelectionModel().getSelectedItem());
     }
 
     public void doSellStockTransaction(ActionEvent event) {

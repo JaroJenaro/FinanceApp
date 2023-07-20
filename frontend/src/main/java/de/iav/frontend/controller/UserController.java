@@ -1,5 +1,8 @@
 package de.iav.frontend.controller;
+//import de.iav.frontend.model.TransactionWithoutUser;
 
+import de.iav.frontend.model.User;
+import de.iav.frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,14 +22,33 @@ public class UserController {
     public Button signUp;
     @FXML
     public Button buyStocks;
+    private final UserService userService = new UserService();
+
     @FXML
     public void onBuyStockButtonClick(ActionEvent event) {
         System.out.println("Buy stock clicked");
     }
+
     @FXML
     public void onSignUpButtonClick(ActionEvent event) {
-        System.out.println("sign up button clicked");
+        User user = new User("12345", firstName.getText(), lastName.getText(), email.getText(), password.getText());
+        System.out.println(userService.addUser(user));
     }
 
-
+    public void backButtonPressed(ActionEvent actionEvent) {
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

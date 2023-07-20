@@ -1,8 +1,8 @@
 package de.iav.frontend.service;
 
-import de.iav.frontend.controller.PortfolioViewController;
 import de.iav.frontend.controller.TransactionController;
 import de.iav.frontend.model.Stock;
+import de.iav.frontend.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +21,26 @@ public class SceneSwitchService {
             instance = new SceneSwitchService();
         }
         return instance;
+    }
+
+    public void switchToUserSignIn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/user.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToUserController(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/user.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void switchToStockController(ActionEvent actionEvent) throws IOException {
@@ -47,7 +67,7 @@ public class SceneSwitchService {
         stage.show();
     }
 
-    public void switchToBuyViewController(ActionEvent event) throws IOException {
+    public void switchToBuyViewController(ActionEvent event, User user) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/BuyView.fxml"));
         Parent root = loader.load();
 
@@ -62,7 +82,7 @@ public class SceneSwitchService {
         stage.show();
     }
 
-    public void switchToSellViewController(ActionEvent event) throws IOException {
+    public void switchToSellViewController(ActionEvent event, User user) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/SellView.fxml"));
         Parent root = loader.load();
 
@@ -77,7 +97,7 @@ public class SceneSwitchService {
         stage.show();
     }
 
-    public void backToPortfolioScene(ActionEvent event) throws IOException {
+    public void switchToPortfolioScene(ActionEvent event, User user) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/portfolioViewTable.fxml"));
         Parent root = loader.load();
 

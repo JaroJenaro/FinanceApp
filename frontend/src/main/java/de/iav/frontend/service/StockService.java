@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.iav.frontend.model.Stock;
-import de.iav.frontend.model.User;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -53,23 +52,21 @@ public class StockService {
     public Double getStockPrice(String stockSymbol) {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/api/financeapp/stocks/price/"+stockSymbol))
+                .uri(URI.create("http://localhost:8080/api/financeapp/stocks/price/" + stockSymbol))
                 .build();
 
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
-                .thenApply(this::mapToUserList) // .thenApply(responseBody -> mapToStudent(responseBody))
+                .thenApply(this::mapToDouble) // .thenApply(responseBody -> mapToStudent(responseBody))
                 .join();
     }
 
-    private Double mapToUserList(String responseBody) {
+    private Double mapToDouble(String json) {
+        System.out.println(" private Double mapToDouble(String json) {" + json + "}");
         try {
-            return objectMapper.readValue(responseBody, new TypeReference<>() {
-            });
-
+            return objectMapper.readValue(json, Double.class);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("Failed to map users List", e);
+            throw new RuntimeException("Failed to map Double", e);
         }
-
     }
 }
