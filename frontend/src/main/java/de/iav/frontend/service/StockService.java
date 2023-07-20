@@ -15,6 +15,7 @@ public class StockService {
     private static StockService instance;
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
+
     private StockService() {
         this.httpClient = HttpClient.newHttpClient();
         this.objectMapper = new ObjectMapper();
@@ -49,6 +50,7 @@ public class StockService {
         }
 
     }
+
     public Double getStockPrice(String stockSymbol) {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -69,4 +71,5 @@ public class StockService {
             throw new RuntimeException("Failed to map Double", e);
         }
     }
+
 }

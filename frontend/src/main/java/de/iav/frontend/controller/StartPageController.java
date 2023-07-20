@@ -48,6 +48,7 @@ public class StartPageController {
                     } else {
                         if ((userService.getUserByEmail(email.getText()).password()).equals(password.getText())) {
                             System.out.println("correct password, switch to portfolio page");
+                            System.out.println("logInUser: " + logInUser);
                             sceneSwitchService.switchToPortfolioScene(actionEvent, logInUser);
                         }
                     }

@@ -7,7 +7,6 @@ import de.iav.frontend.service.TransactionService;
 import de.iav.frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -23,8 +22,8 @@ public class SellViewController {
     @FXML
     public ListView<Stock> lv_stocks;
 
-    @FXML
-    public ComboBox<User> cb_users;
+    //@FXML
+    //public ComboBox<User> cb_users;
 
     private User user;
     @FXML
@@ -46,25 +45,11 @@ public class SellViewController {
 
 
     public void showAllStocks() {
-        lv_stocks.getItems().clear();
-        lv_stocks.getItems().addAll(stockService.getAllStocks());
-/*
-        ObservableList<Stock> allStocks =
-                FXCollections.observableArrayList(stockService.getAllStocks()
-                );
-        cb_stocks.setItems(allStocks);
-        //observableArrayList = FXCollections..getAllStocks().
 
- */
-        cb_users.getItems().addAll(userService.getAllUsers());
+
         System.out.println("showAllStocks");
     }
 
-
-    public void doStockTransaction_CB(ActionEvent event) throws IOException {
-
-
-    }
 
     public void calculateSum(ActionEvent event) {
 
@@ -76,21 +61,21 @@ public class SellViewController {
     }
 
     public void doSceneChange(ActionEvent event) throws IOException {
-        sceneSwitchService.switchToBuyViewController(event, cb_users.getSelectionModel().getSelectedItem());
+        sceneSwitchService.switchToBuyViewController(event, user);
     }
 
     public void doSellStockTransaction(ActionEvent event) {
 
         if (lv_stocks.getSelectionModel().getSelectedItem() != null &&
-                cb_users.getSelectionModel().getSelectedItem() != null &&
+                user != null &&
                 quantity > 0 &&
                 price > 0
         ) {
-            System.out.println("Bereit zum Verkaufen User: " + cb_users.getSelectionModel().getSelectedItem());
+            System.out.println("Bereit zum Verkaufen User: " + user);
             System.out.println("verkauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
             System.out.println(" für insgesamt " + tf_sum.getText());
             TransactionWithoutIdDTO transactionWithoutIdDto = new TransactionWithoutIdDTO(TransactionType.SELL,
-                    LocalDateTime.now().toString(), cb_users.getSelectionModel().getSelectedItem(), lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
+                    LocalDateTime.now().toString(), user, lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction sellTransaction = transactionService.addTransaction(transactionWithoutIdDto);
             System.out.println("sellTransaction: " + sellTransaction + "ausgeführt");
 
@@ -103,5 +88,7 @@ public class SellViewController {
 
     public void setUserForSelling(User user) {
         this.user = user;
+        lv_stocks.getItems().clear();
+        lv_stocks.getItems().addAll(transactionService.getAllStocksByUserID(user.id()));
     }
 }

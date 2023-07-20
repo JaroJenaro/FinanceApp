@@ -2,21 +2,35 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.BuyViewController">
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.BuyViewController">
     <ListView fx:id="lv_stocks" layoutX="158.0" layoutY="30.0" onKeyPressed="#stockChangedKey"
-              onMouseClicked="#stockChanged" prefHeight="155.0" prefWidth="570.0" AnchorPane.bottomAnchor="215.0"
+              onMouseClicked="#stockChanged" prefHeight="132.0" prefWidth="573.0" AnchorPane.bottomAnchor="298.0"
               AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0"/>
-    <ComboBox fx:id="cb_users" layoutX="15.0" layoutY="193.0" prefHeight="37.0" prefWidth="570.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="193.0" />
-    <Label layoutX="21.0" layoutY="7.0" prefHeight="17.0" prefWidth="255.0" text="Verfügbare Aktien zum Kaufen" />
-    <Button fx:id="buyButton" layoutX="21.0" layoutY="354.0" mnemonicParsing="false" onAction="#doBuyStockTransaction" prefHeight="25.0" prefWidth="217.0" text="BUY Order ausführen" />
-    <Label layoutX="15.0" layoutY="241.0" prefHeight="17.0" prefWidth="126.0" text="Anzahl der Aktien" AnchorPane.leftAnchor="12.0" />
-    <Label layoutX="15.0" layoutY="269.0" prefHeight="17.0" prefWidth="94.0" text="aktuelle Preis"
-           AnchorPane.leftAnchor="12.0"/>
-    <Label layoutX="15.0" layoutY="295.0" prefHeight="17.0" prefWidth="94.0" text="Summe" AnchorPane.leftAnchor="12.0" />
-    <TextField fx:id="tf_quantity" layoutX="149.0" layoutY="237.0" onAction="#calculateSum" />
-    <TextField fx:id="tf_price" layoutX="149.0" layoutY="265.0" onAction="#calculateSum" />
-    <TextField fx:id="tf_sum" layoutX="149.0" layoutY="291.0" />
-    <Button fx:id="sellButton" layoutX="334.0" layoutY="354.0" mnemonicParsing="false" onAction="#doSceneChange" prefHeight="25.0" prefWidth="217.0" text="Wechseln ins VERKAUF Maske" />
-    <Button layoutX="427.0" layoutY="266.0" mnemonicParsing="false" onAction="#backToPortfolioScene"
+    <ComboBox fx:id="cb_users" layoutX="12.0" layoutY="169.0" prefHeight="25.0" prefWidth="573.0"
+              AnchorPane.bottomAnchor="266.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0"
+              AnchorPane.topAnchor="169.0"/>
+    <Label layoutX="21.0" layoutY="7.0" prefHeight="17.0" prefWidth="255.0" text="Verfügbare Aktien zum Kaufen"/>
+    <Button fx:id="buyButton" layoutX="23.0" layoutY="402.0" mnemonicParsing="false" onAction="#doBuyStockTransaction"
+            prefHeight="25.0" prefWidth="217.0" text="BUY Order ausführen"/>
+    <Label layoutX="14.0" layoutY="289.0" prefHeight="17.0" prefWidth="126.0" text="Anzahl der Aktien"
+           AnchorPane.leftAnchor="14.0"/>
+    <Label layoutX="14.0" layoutY="317.0" prefHeight="17.0" prefWidth="94.0" text="aktuelle Preis"
+           AnchorPane.leftAnchor="14.0"/>
+    <Label layoutX="14.0" layoutY="343.0" prefHeight="17.0" prefWidth="94.0" text="Summe" AnchorPane.leftAnchor="14.0"/>
+    <TextField fx:id="tf_quantity" layoutX="151.0" layoutY="285.0" onAction="#calculateSum"/>
+    <TextField fx:id="tf_price" layoutX="151.0" layoutY="313.0" onAction="#calculateSum"/>
+    <TextField fx:id="tf_sum" layoutX="151.0" layoutY="339.0"/>
+    <Button fx:id="sellButton" layoutX="336.0" layoutY="402.0" mnemonicParsing="false" onAction="#doSceneChange"
+            prefHeight="25.0" prefWidth="217.0" text="Wechseln ins VERKAUF Maske"/>
+    <Button layoutX="429.0" layoutY="314.0" mnemonicParsing="false" onAction="#backToPortfolioScene"
             text="back to Portfolio"/>
+    <Label layoutX="14.0" layoutY="203.0" prefHeight="32.0" prefWidth="149.0" text="Anwender"/>
+    <Label fx:id="l_user" layoutX="217.0" layoutY="203.0" prefHeight="69.0" prefWidth="333.0" text="User">
+        <font>
+            <Font name="System Bold Italic" size="14.0"/>
+        </font>
+    </Label>
 </AnchorPane>

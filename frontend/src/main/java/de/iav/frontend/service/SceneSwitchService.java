@@ -71,11 +71,13 @@ public class SceneSwitchService {
     }
 
     public void switchToBuyViewController(ActionEvent event, User user) throws IOException {
+        System.out.println("  ----> public void switchToBuyViewController(ActionEvent event, User user) throws IOException {: " + user);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/controller/BuyView.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         BuyViewController buyViewController = loader.getController();
+        System.out.println("  ----> public void switchToBuyViewController(ActionEvent event, User user) throws IOException {: " + user);
         buyViewController.setUserForBuying(user);
 
         Scene scene = new Scene(root);
