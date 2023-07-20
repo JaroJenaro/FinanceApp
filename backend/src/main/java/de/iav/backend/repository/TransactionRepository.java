@@ -12,13 +12,8 @@ import java.util.Optional;
 @Repository
 public interface TransactionRepository extends MongoRepository<Transaction, String> {
 
-    List<Transaction> findAllByUser(User user);
-
     List<Transaction> findAllByUserId(String id);
 
     List<Transaction> findTransactionByUser(Optional<User> user);
-
-
-    //List<Transaction> findAllByUser(User user);
 
 }

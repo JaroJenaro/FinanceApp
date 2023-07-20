@@ -9,9 +9,6 @@
     <ListView fx:id="lv_stocks" layoutX="158.0" layoutY="30.0" onKeyPressed="#stockChangedKey"
               onMouseClicked="#stockChanged" prefHeight="132.0" prefWidth="573.0" AnchorPane.bottomAnchor="298.0"
               AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0"/>
-    <ComboBox fx:id="cb_users" layoutX="12.0" layoutY="169.0" prefHeight="25.0" prefWidth="573.0"
-              AnchorPane.bottomAnchor="266.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0"
-              AnchorPane.topAnchor="169.0"/>
     <Label layoutX="21.0" layoutY="7.0" prefHeight="17.0" prefWidth="255.0" text="Verfügbare Aktien zum Kaufen"/>
     <Button fx:id="buyButton" layoutX="23.0" layoutY="402.0" mnemonicParsing="false" onAction="#doBuyStockTransaction"
             prefHeight="25.0" prefWidth="217.0" text="BUY Order ausführen"/>

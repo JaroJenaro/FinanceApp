@@ -4,7 +4,6 @@ import de.iav.frontend.model.*;
 import de.iav.frontend.service.SceneSwitchService;
 import de.iav.frontend.service.StockService;
 import de.iav.frontend.service.TransactionService;
-import de.iav.frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -21,7 +19,7 @@ import java.time.LocalDateTime;
 public class BuyViewController {
 
     private final StockService stockService = StockService.getInstance();
-    private final UserService userService = UserService.getInstance();
+
     private final TransactionService transactionService = TransactionService.getInstance();
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
     @FXML
@@ -74,7 +72,7 @@ public class BuyViewController {
 
 
     @FXML
-    public void calculateSum(ActionEvent event) {
+    public void calculateSum() {
         System.out.println("calculateSum");
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
@@ -83,7 +81,7 @@ public class BuyViewController {
     }
 
     @FXML
-    public void doBuyStockTransaction(ActionEvent event) {
+    public void doBuyStockTransaction() {
 
         quantity = Integer.parseInt(tf_quantity.getText());
         price = Double.parseDouble(tf_price.getText());
@@ -125,7 +123,7 @@ public class BuyViewController {
         l_user.setText(user.toString());
     }
 
-    public void stockChanged(MouseEvent mouseEvent) {
+    public void stockChanged() {
         System.out.println(lv_stocks.getSelectionModel().getSelectedItem());
         price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker());
         System.out.println("Price: " + price);

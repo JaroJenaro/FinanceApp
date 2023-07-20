@@ -6,7 +6,6 @@ import de.iav.frontend.model.Transaction;
 import de.iav.frontend.model.User;
 import de.iav.frontend.service.PortfolioViewService;
 import de.iav.frontend.service.SceneSwitchService;
-import de.iav.frontend.service.StockService;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +37,7 @@ public class PortfolioViewController {
     public Text portfolioValue;
 
     private final PortfolioViewService portfolioViewService = PortfolioViewService.getInstance();
-    private final StockService stockService = StockService.getInstance();
+
     @FXML
     public ListView<Transaction> listViewTransactions;
 

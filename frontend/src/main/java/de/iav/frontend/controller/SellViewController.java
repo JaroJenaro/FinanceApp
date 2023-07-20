@@ -2,9 +2,7 @@ package de.iav.frontend.controller;
 
 import de.iav.frontend.model.*;
 import de.iav.frontend.service.SceneSwitchService;
-import de.iav.frontend.service.StockService;
 import de.iav.frontend.service.TransactionService;
-import de.iav.frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -15,15 +13,11 @@ import java.time.LocalDateTime;
 
 public class SellViewController {
 
-    private final StockService stockService = StockService.getInstance();
-    private final UserService userService = UserService.getInstance();
     private final TransactionService transactionService = TransactionService.getInstance();
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
     @FXML
     public ListView<Stock> lv_stocks;
 
-    //@FXML
-    //public ComboBox<User> cb_users;
 
     private User user;
     @FXML
@@ -51,7 +45,7 @@ public class SellViewController {
     }
 
 
-    public void calculateSum(ActionEvent event) {
+    public void calculateSum() {
 
         System.out.println("calculateSum");
         quantity = Integer.parseInt(tf_quantity.getText());
@@ -64,7 +58,7 @@ public class SellViewController {
         sceneSwitchService.switchToBuyViewController(event, user);
     }
 
-    public void doSellStockTransaction(ActionEvent event) {
+    public void doSellStockTransaction() {
 
         if (lv_stocks.getSelectionModel().getSelectedItem() != null &&
                 user != null &&
