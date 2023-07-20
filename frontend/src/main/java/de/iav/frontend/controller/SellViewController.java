@@ -67,13 +67,13 @@ public class SellViewController {
                 quantity > 0 &&
                 price > 0
         ) {
-            LOG.info("Bereit zum Verkaufen User: " + user);
-            LOG.info("verkauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
-            LOG.info(" für insgesamt " + tf_sum.getText());
+            LOG.info("Bereit zum Verkaufen User: {}", user);
+            LOG.info("verkauft {} Aktien von {} zum Preis von {}", quantity, lv_stocks.getSelectionModel().getSelectedItem(), price);
+            LOG.info(" für insgesamt {} ", tf_sum.getText());
             TransactionWithoutIdDTO transactionWithoutIdDto = new TransactionWithoutIdDTO(TransactionType.SELL,
                     LocalDateTime.now().toString(), user, lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction sellTransaction = transactionService.addTransaction(transactionWithoutIdDto);
-            LOG.info("sellTransaction: " + sellTransaction + "ausgeführt");
+            LOG.info("sellTransaction: {} ausgeführt", sellTransaction);
 
 
         } else {
