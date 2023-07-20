@@ -1,6 +1,7 @@
 package de.iav.backend.controller;
 
 
+import de.iav.backend.externalAPIcommunication.StockDataAccess;
 import de.iav.backend.model.Stock;
 import de.iav.backend.service.StockService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,12 @@ import java.util.Optional;
 public class StockController {
 
     private final StockService stockService;
+    private final StockDataAccess stockDataAccess;
 
 
-    public StockController(StockService stockService) {
+    public StockController(StockService stockService, StockDataAccess stockDataAccess) {
         this.stockService = stockService;
+        this.stockDataAccess = stockDataAccess;
     }
 
     @GetMapping
@@ -34,6 +37,12 @@ public class StockController {
     @GetMapping("/set")
     public List<Stock> setDefaultStocks() {
         return stockService.setStockByRepository();
+    }
+
+    @GetMapping("/price/{stockSymbol}")
+    public Double getStockPrice(@PathVariable String stockSymbol){
+        System.out.println(stockDataAccess.getLastPriceForStock(stockSymbol).toString());
+        return stockDataAccess.getLastPriceForStock(stockSymbol);
     }
 
 

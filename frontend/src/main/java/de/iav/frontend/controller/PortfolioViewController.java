@@ -7,6 +7,7 @@ import de.iav.frontend.model.Transaction;
 import de.iav.frontend.model.TransactionType;
 import de.iav.frontend.model.User;
 import de.iav.frontend.service.PortfolioViewService;
+import de.iav.frontend.service.StockService;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,6 +44,7 @@ public class PortfolioViewController {
     public Text portfolioValue;
 
     private final PortfolioViewService portfolioViewService= PortfolioViewService.getInstance();
+    private final StockService stockService=StockService.getInstance();
     @FXML
     public ListView<Transaction> listViewTransactions;
 
@@ -64,11 +66,12 @@ public class PortfolioViewController {
             String companyName = data.getValue().stock().companyName();
             return Bindings.createObjectBinding(() -> companyName);
         });
+        System.out.println(stockService.getStockPrice(portfolio.get(0).stock().stockTicker()));
 
-        price.setCellValueFactory(data -> {
-            Double price = data.getValue().price();
+/*        price.setCellValueFactory(data -> {
+            Double price = stockService.getStockPrice(data.getValue().stock().stockTicker());
             return Bindings.createObjectBinding(() -> price);
-        });
+        });*/
 
         // Fetch the data from the backend (replace this with your actual data retrieval)
 
@@ -77,7 +80,7 @@ public class PortfolioViewController {
         portfolioTable.getItems().addAll(portfolio);
 
 
-/*        portfolioTable.getSelectionModel()
+        portfolioTable.getSelectionModel()
                 .selectedItemProperty()
                 // Listener der etwas macht
                 .addListener(
@@ -87,7 +90,7 @@ public class PortfolioViewController {
 
                         }
                         }
-                )*/
+                );
     }
 
 
