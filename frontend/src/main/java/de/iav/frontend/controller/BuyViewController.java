@@ -60,9 +60,6 @@ public class BuyViewController {
 
         lv_stocks.getItems().addAll(stockService.getAllStocks());
         logger.info("showAllUsers {}");
-        logger.info(stockService.getAllStocks().toString());
-        logger.info(this.user.toString());
-        logger.info(user.toString());
     }
 
 
@@ -87,14 +84,14 @@ public class BuyViewController {
                 quantity > 0 &&
                 price > 0
         ) {
-            logger.fine("Bereit zum Kaufen User: " + user);
-            logger.fine("kauft " + quantity + " Aktien von " + lv_stocks.getSelectionModel().getSelectedItem() + " zum Preis von " + price);
-            logger.fine(" für insgesamt " + tf_sum.getText());
+            logger.fine(String.format("Bereit zum Kaufen User: %s", user));
+            logger.fine(String.format("kauft %d Aktien von %s zum Preis von %f", quantity, lv_stocks.getSelectionModel().getSelectedItem(), price));
+            logger.fine(String.format("für insgesamt %s", tf_sum.getText()));
             TransactionWithoutIdDTO transactionDTO = new TransactionWithoutIdDTO(TransactionType.BUY,
                     LocalDateTime.now().toString(), user, lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction buyTransaction = transactionService.addTransaction(transactionDTO);
 
-            logger.fine("buyTransaction: " + buyTransaction + "ausgeführt");
+            logger.fine(String.format("buyTransaction: %s ausgeführt", buyTransaction));
         } else {
             logger.info("Transaktion nicht möglich da kein Stock is selected.");
         }
@@ -110,23 +107,22 @@ public class BuyViewController {
     }
 
     public void setUserForBuying(User user) {
-        logger.fine("setUserForBuying(User user) { user: " + user);
+        logger.fine(String.format("setUserForBuying(User user) { user: %s", user));
         this.user = user;
-        logger.fine("setUserForBuying(User user) { user: " + this.user);
-        logger.fine("showAllStocks: " + user.toString());
+        logger.fine(String.format("setUserForBuying(User user) { user: %s", this.user));
         l_user.setText(user.toString());
     }
 
     public void stockChanged() {
         logger.fine(String.valueOf(lv_stocks.getSelectionModel().getSelectedItem()));
         price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker());
-        logger.fine("Price: " + price);
+        logger.fine(String.format("Price: %f", price));
         tf_price.setText(String.valueOf(price));
 
     }
 
     public void stockChangedKey(KeyEvent keyEvent) {
-        logger.fine("test");
+        logger.fine("stockChangedKey");
         if (keyEvent.getCode() == KeyCode.getKeyCode("s"))
             logger.fine(String.valueOf(lv_stocks.getSelectionModel().getSelectedItem()));
     }
