@@ -1,7 +1,7 @@
 package de.iav.backend.controller;
 
 
-import de.iav.backend.externalAPICommunication.StockDataAccess;
+
 import de.iav.backend.model.Stock;
 import de.iav.backend.service.StockService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +17,10 @@ import java.util.Optional;
 public class StockController {
 
     private final StockService stockService;
-    private final StockDataAccess stockDataAccess;
+    private final de.iav.backend.externalAPIcommunication.StockDataAccess stockDataAccess;
 
 
-    public StockController(StockService stockService, StockDataAccess stockDataAccess) {
+    public StockController(StockService stockService, de.iav.backend.externalAPIcommunication.StockDataAccess stockDataAccess) {
         this.stockService = stockService;
         this.stockDataAccess = stockDataAccess;
     }
