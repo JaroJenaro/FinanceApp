@@ -16,7 +16,8 @@
                 <columns>
                     <TableColumn fx:id="companyName" prefWidth="100.0" text="company name" />
                     <TableColumn fx:id="quantity" prefWidth="101.0" text="quantity" />
-                    <TableColumn fx:id="price" prefWidth="101.0" text="buy price" />
+                    <TableColumn fx:id="buyPrice" prefWidth="101.0" text="buy price" />
+                    <TableColumn fx:id="currentPrice" prefWidth="101.0" text="current price" />
                 </columns>
             </TableView>
         </VBox>
