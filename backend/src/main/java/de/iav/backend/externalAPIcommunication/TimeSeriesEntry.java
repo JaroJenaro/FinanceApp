@@ -1,4 +1,4 @@
-package de.iav.backend.externalAPIcommunication;
+package de.iav.backend.externalAPICommunication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

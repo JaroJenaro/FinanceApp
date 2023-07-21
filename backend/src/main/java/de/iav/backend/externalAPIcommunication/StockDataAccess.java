@@ -24,14 +24,14 @@ public class StockDataAccess {
             String jsonResponse = makeApiRequest(apiUrl);
 
             // Deserialize the JSON response into the data model
-            de.iav.backend.externalAPIcommunication.StockResponse stockResponse = objectMapper.readValue(jsonResponse, de.iav.backend.externalAPIcommunication.StockResponse.class);
+            StockResponse stockResponse = objectMapper.readValue(jsonResponse, StockResponse.class);
 
             // Get the TimeSeries from the StockResponse
             TimeSeries timeSeries = stockResponse.getTimeSeries();
 
             // Find the latest entry in the TimeSeries and get the close price
             String lastDateTime = timeSeries.getLastDateTime();
-            de.iav.backend.externalAPIcommunication.TimeSeriesEntry lastEntry = timeSeries.getEntry(lastDateTime);
+            TimeSeriesEntry lastEntry = timeSeries.getEntry(lastDateTime);
 
             // Return the last price as a Double
             return Double.parseDouble(lastEntry.getClose());
