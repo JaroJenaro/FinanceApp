@@ -20,7 +20,6 @@ public class CurrentStockPriceController {
         this.currentStockPriceService = currentStockPriceService;
 
     }
-
     @GetMapping
     public List<CurrentStockPrice> getAllCurrentStockPrice() {
         return currentStockPriceService.getAllCurrentStockPrice();
