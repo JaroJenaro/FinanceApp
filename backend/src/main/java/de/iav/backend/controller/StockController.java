@@ -1,7 +1,7 @@
 package de.iav.backend.controller;
 
 
-import de.iav.backend.externalAPIcommunication.StockDataAccess;
+import de.iav.backend.externalAPICommunication.StockDataAccess;
 import de.iav.backend.model.Stock;
 import de.iav.backend.service.StockService;
 import org.springframework.web.bind.annotation.GetMapping;

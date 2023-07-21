@@ -6,6 +6,8 @@ import de.iav.frontend.model.Transaction;
 import de.iav.frontend.model.User;
 import de.iav.frontend.service.PortfolioViewService;
 import de.iav.frontend.service.SceneSwitchService;
+import de.iav.frontend.service.StockService;
+import de.iav.frontend.service.TransactionService;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,10 +28,13 @@ public class PortfolioViewController {
     public TableColumn<Transaction, String> companyName;
     @FXML
     public TableColumn<Transaction, Integer> quantity;
-    public TableColumn<Transaction, Double> price;
+    @FXML
+    public TableColumn<Transaction, Double> buyPrice;
     @FXML
     public Button buyButton;
-
+    @FXML
+    public TableColumn <Transaction, Double> currentPrice;
+    @FXML
     private User user;
     @FXML
     public Button sellButton;
@@ -37,17 +42,24 @@ public class PortfolioViewController {
     public Text portfolioValue;
 
     private final PortfolioViewService portfolioViewService = PortfolioViewService.getInstance();
+    private final TransactionService transactionService = TransactionService.getInstance();
+    private final StockService stockService = StockService.getInstance();
 
     @FXML
     public ListView<Transaction> listViewTransactions;
 
 
 
+
     public void initialize() {
+    }
         //String userId="12345";
 
+
+    private void initializeUser(){
+
         // Retrieve portfolio transactions for the user
-        List<Transaction> portfolio = portfolioViewService.getAllTransactions();
+        List<Transaction> portfolio = portfolioViewService.getPortfolioByUserID(user.id());
         System.out.println(portfolio.toString());
 
         //stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -56,18 +68,30 @@ public class PortfolioViewController {
             return Bindings.createObjectBinding(() -> quantity);
         });
         companyName.setCellValueFactory(data -> {
-            String companyName = data.getValue().stock().companyName();
+            String companyName = data.getValue().stock().wkn();
             return Bindings.createObjectBinding(() -> companyName);
         });
-        //System.out.println(stockService.getStockPrice(portfolio.get(0).stock().stockTicker()));
-
-/*        price.setCellValueFactory(data -> {
-            Double price = stockService.getStockPrice(data.getValue().stock().stockTicker());
+        buyPrice.setCellValueFactory(data -> {
+            Double price = data.getValue().price();
             return Bindings.createObjectBinding(() -> price);
-        });*/
+        });
+        double totalValue = 0.0;
 
-        // Fetch the data from the backend (replace this with your actual data retrieval)
+        for (Transaction transaction : portfolioTable
+                .getItems()) {
+            // Get the quantity and price from the Transaction object
+            int quantity = transaction.quantity();
+            System.out.println(quantity);
+            double price = transaction.price();
+            System.out.println(price);
 
+            // Calculate the value for this row and add it to the totalValue
+            double rowValue = quantity * price;
+            totalValue += rowValue;
+
+        }
+        String totalValueString= String.valueOf(totalValue);
+        portfolioValue.setText(totalValueString);
 
         // Add the data to the table
         portfolioTable.getItems().addAll(portfolio);
@@ -101,7 +125,11 @@ public class PortfolioViewController {
     public void setUserForPortfolio(User user) {
 
         this.user = user;
+        initializeUser();
     }
+
+
+
 }
 
 

@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Transaction {
         @MongoId
         String id;
-        String typeOfTransaction;
+        TransactionType typeOfTransaction;
         String dateAndTimeOfTransaction;
         @DBRef
         User user;
@@ -24,7 +24,7 @@ public class Transaction {
         Integer quantity;
         Double price ;
 
-        public Transaction(String typeOfTransaction, String dateAndTimeOfTransaction, User user, Stock stock, Integer quantity, Double price) {
+        public Transaction(TransactionType typeOfTransaction, String dateAndTimeOfTransaction, User user, Stock stock, Integer quantity, Double price) {
                 this.typeOfTransaction=typeOfTransaction;
                 this.dateAndTimeOfTransaction=dateAndTimeOfTransaction;
                 this.user=user;

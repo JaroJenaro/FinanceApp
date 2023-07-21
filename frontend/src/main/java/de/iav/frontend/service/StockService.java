@@ -16,7 +16,7 @@ public class StockService {
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
 
-    private StockService() {
+    public StockService() {
         this.httpClient = HttpClient.newHttpClient();
         this.objectMapper = new ObjectMapper();
     }

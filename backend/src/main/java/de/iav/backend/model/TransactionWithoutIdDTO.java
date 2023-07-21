@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class TransactionWithoutIdDTO {
-    String typeOfTransaction;
+    TransactionType typeOfTransaction;
     String dateAndTimeOfTransaction;
 
     User user;

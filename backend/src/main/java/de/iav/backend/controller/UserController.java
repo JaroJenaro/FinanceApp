@@ -13,6 +13,7 @@ import java.util.Optional;
 @RequestMapping("/api/financeapp/users")
 public class UserController {
     private final UserService userService;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -32,9 +33,17 @@ public class UserController {
         return userService.getUserByEmail(email);
     }
 
-    @GetMapping("/portfolio/{id}")
+/*    @GetMapping("/portfolio/{id}")
     public List<Transaction> getTransactionByUserById(@PathVariable String id) {
         return userService.getAllTransactionsByUser(userService.getUserById(id));
+    }*/
+
+    @GetMapping("/portfolio/{id}")
+    public List<Transaction> getAllTransactionByUser(@PathVariable String id) {
+        List<Transaction> ownedStocksList;
+        ownedStocksList = userService.calculateOwnedStocks(id);
+        // Process the ownedStocksList and return it
+        return ownedStocksList;
     }
 
     @GetMapping("/set")
