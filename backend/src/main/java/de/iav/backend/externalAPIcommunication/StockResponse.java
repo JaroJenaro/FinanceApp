@@ -1,21 +1,22 @@
 package de.iav.backend.externalAPIcommunication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.iav.backend.externalAPICommunication.TimeSeries;
 
 public class StockResponse {
     @JsonProperty("Meta Data")
-    private MetaData metaData;
+    private de.iav.backend.externalAPIcommunication.MetaData metaData;
     @JsonProperty("Time Series (5min)")
     private TimeSeries timeSeries;
 
     public StockResponse() {
     }
 
-    public MetaData getMetaData() {
+    public de.iav.backend.externalAPIcommunication.MetaData getMetaData() {
         return metaData;
     }
 
-    public void setMetaData(MetaData metaData) {
+    public void setMetaData(de.iav.backend.externalAPIcommunication.MetaData metaData) {
         this.metaData = metaData;
     }
 
