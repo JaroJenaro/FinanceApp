@@ -88,7 +88,7 @@ public class UserService {
                                     transaction.getTypeOfTransaction(),
                                     transaction.getDateAndTimeOfTransaction(),
                                     transaction.getUser(),
-                                    new Stock(stockTicker, companyName, null, null),
+                                    new Stock(null, null, stockTicker, companyName),
                                     quantity,
                                     transaction.getPrice()
                             ))
