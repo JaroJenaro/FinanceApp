@@ -68,7 +68,7 @@ public class PortfolioViewController {
             return Bindings.createObjectBinding(() -> quantity);
         });
         companyName.setCellValueFactory(data -> {
-            String companyName = data.getValue().stock().wkn();
+            String companyName = data.getValue().stock().companyName();
             return Bindings.createObjectBinding(() -> companyName);
         });
         buyPrice.setCellValueFactory(data -> {
