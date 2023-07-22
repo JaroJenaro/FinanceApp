@@ -2,6 +2,7 @@ package de.iav.backend.service;
 
 import de.iav.backend.exception.UserNotFoundException;
 import de.iav.backend.model.User;
+import de.iav.backend.repository.StockRepository;
 import de.iav.backend.repository.TransactionRepository;
 import de.iav.backend.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,8 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
     UserRepository userRepository = mock(UserRepository.class);
     TransactionRepository transactionRepository = mock(TransactionRepository.class);
-    UserService userService = new UserService(userRepository,transactionRepository);
+    StockRepository stockRepository= mock(StockRepository.class);
+    UserService userService = new UserService(userRepository,transactionRepository, stockRepository);
     @Test
     void getUserById_whenExistingId_thenReturnUser() {
         //GIVEN
