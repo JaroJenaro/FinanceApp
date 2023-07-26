@@ -91,6 +91,7 @@ public class BuyViewController {
             Transaction buyTransaction = transactionService.addTransaction(transactionDTO);
 
             LOG.info("buyTransaction: {} ausgeführt", buyTransaction);
+            //sceneSwitchService.switchToPortfolioScene(new ActionEvent(), user);
         } else {
             LOG.info("Transaktion nicht möglich da kein Stock is selected.");
         }

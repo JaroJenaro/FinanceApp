@@ -46,7 +46,8 @@ public class TransactionService {
         ) {
 
             if (transaction.getUser().getId().equals(id))
-                userStockList.add(transaction.getStock());
+                if (!userStockList.contains(transaction.getStock()))
+                    userStockList.add(transaction.getStock());
         }
         return userStockList;
     }

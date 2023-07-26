@@ -2,6 +2,7 @@ package de.iav.frontend.controller;
 
 import de.iav.frontend.model.*;
 import de.iav.frontend.service.SceneSwitchService;
+import de.iav.frontend.service.StockService;
 import de.iav.frontend.service.TransactionService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 
 public class SellViewController {
 
+    private final StockService stockService = StockService.getInstance();
     private final TransactionService transactionService = TransactionService.getInstance();
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
     @FXML
@@ -60,6 +62,14 @@ public class SellViewController {
         sceneSwitchService.switchToBuyViewController(event, user);
     }
 
+    public void stockChanged() {
+        LOG.info(lv_stocks.getSelectionModel().getSelectedItem());
+        price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker()).price();
+        LOG.info("Price: {}", price);
+        tf_price.setText(String.valueOf(price));
+
+    }
+
     public void doSellStockTransaction() {
 
         if (lv_stocks.getSelectionModel().getSelectedItem() != null &&
@@ -74,7 +84,7 @@ public class SellViewController {
                     LocalDateTime.now().toString(), user, lv_stocks.getSelectionModel().getSelectedItem(), quantity, price);
             Transaction sellTransaction = transactionService.addTransaction(transactionWithoutIdDto);
             LOG.info("sellTransaction: {} ausgeführt", sellTransaction);
-
+            //sceneSwitchService.switchToPortfolioScene(new ActionEvent(), user);
 
         } else {
 
@@ -86,5 +96,9 @@ public class SellViewController {
         this.user = user;
         lv_stocks.getItems().clear();
         lv_stocks.getItems().addAll(transactionService.getAllStocksByUserID(user.id()));
+    }
+
+    public void backToPortfolioScene(ActionEvent event) throws IOException {
+        sceneSwitchService.switchToPortfolioScene(event, user);
     }
 }
