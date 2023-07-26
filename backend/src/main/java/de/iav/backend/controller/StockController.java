@@ -6,9 +6,6 @@ import de.iav.backend.model.CurrentStockPrice;
 import de.iav.backend.model.Stock;
 import de.iav.backend.service.CurrentStockPriceService;
 import de.iav.backend.service.StockService;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +17,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/financeapp/stocks")
-public class StockController implements ApplicationRunner {
+//public class StockController implements ApplicationRunner {
+public class StockController {
 
     private final StockService stockService;
     private final StockDataAccess stockDataAccess;
@@ -49,7 +47,6 @@ public class StockController implements ApplicationRunner {
     }
 
 
-
     @GetMapping("/price/{stockSymbol}")
     public Double getStockPrice(@PathVariable String stockSymbol) {
         System.out.println(stockDataAccess.getLastPriceForStock(stockSymbol).toString());
@@ -59,21 +56,21 @@ public class StockController implements ApplicationRunner {
         return currentPrice;
     }
 
-    @Override
-    public void run(ApplicationArguments args) throws InterruptedException {
-        Thread.sleep(5000);
-        setAllStockPrices();
-    }
+    //@Override
+    //public void run(ApplicationArguments args) throws InterruptedException {
+    //Thread.sleep(5000);
+    //setAllStockPrices();
+    //}
 
     @GetMapping("/setAllPrice")
     public void setAllStockPrices() throws InterruptedException {
         for (Stock stock : getAllStocks()) {
 
-                System.out.println(stockDataAccess.getLastPriceForStock(stock.getStockTicker()).toString());
-                Double currentPrice = stockDataAccess.getLastPriceForStock(stock.getStockTicker());
-                CurrentStockPrice currentStockPrice = new CurrentStockPrice(stock.getStockTicker(), currentPrice, LocalDateTime.now().toString());
-                currentStockPriceService.saveCurrentStockPrice(currentStockPrice);
-                Thread.sleep(30000);
+            System.out.println(stockDataAccess.getLastPriceForStock(stock.getStockTicker()).toString());
+            Double currentPrice = stockDataAccess.getLastPriceForStock(stock.getStockTicker());
+            CurrentStockPrice currentStockPrice = new CurrentStockPrice(stock.getStockTicker(), currentPrice, LocalDateTime.now().toString());
+            currentStockPriceService.saveCurrentStockPrice(currentStockPrice);
+            Thread.sleep(30000);
 
         }
     }

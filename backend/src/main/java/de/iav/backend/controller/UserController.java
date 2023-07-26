@@ -1,6 +1,5 @@
 package de.iav.backend.controller;
 
-import de.iav.backend.model.Transaction;
 import de.iav.backend.model.User;
 import de.iav.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 @RestController
-@RequestMapping("/api/financeapp/users")
+@RequestMapping("/api/financeapp/oldusers")
 public class UserController {
     private final UserService userService;
 
