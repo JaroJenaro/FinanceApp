@@ -37,11 +37,15 @@ public class AppUserService implements UserDetailsService {
         AppUser appUser = new AppUser(
                 null,
                 newAppUser.username(),
+                newAppUser.firstName(),
+                newAppUser.lastName(),
                 passwordEncoder.encode(newAppUser.password()),
                 newAppUser.email(),
                 "USER"
         );
         AppUser savedAppUser = appUserRepository.save(appUser);
-        return new AppUserResponse(savedAppUser.id(), savedAppUser.username(), savedAppUser.email(), savedAppUser.role());
+        return new AppUserResponse(savedAppUser.id(), savedAppUser.username(),
+                savedAppUser.firstName(), savedAppUser.lastName(),
+                savedAppUser.email(), savedAppUser.role());
     }
 }

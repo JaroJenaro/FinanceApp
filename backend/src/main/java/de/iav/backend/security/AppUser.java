@@ -7,6 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public record AppUser(
         String id,
         String username,
+        String firstName,
+        String lastName,
+
         String password,
         @Indexed(unique = true)
         String email,
