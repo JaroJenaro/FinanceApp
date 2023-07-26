@@ -37,6 +37,7 @@ public class UserController {
         return userService.setUserByRepository();
     }
 
+    //ist ersetzt worden durch /register
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.saveUser(user);
