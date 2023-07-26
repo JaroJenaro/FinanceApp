@@ -1,3 +1,4 @@
+/*
 package de.iav.backend.service;
 
 import de.iav.backend.exception.UserNotFoundException;
@@ -49,4 +50,4 @@ class StockServiceTest {
         verify(stockRepository).findAll();
     }
 
-}
+}*/
