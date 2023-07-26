@@ -68,18 +68,13 @@ public class StockController implements ApplicationRunner {
     @GetMapping("/setAllPrice")
     public void setAllStockPrices() throws InterruptedException {
         for (Stock stock : getAllStocks()) {
-            try {
+
                 System.out.println(stockDataAccess.getLastPriceForStock(stock.getStockTicker()).toString());
                 Double currentPrice = stockDataAccess.getLastPriceForStock(stock.getStockTicker());
                 CurrentStockPrice currentStockPrice = new CurrentStockPrice(stock.getStockTicker(), currentPrice, LocalDateTime.now().toString());
                 currentStockPriceService.saveCurrentStockPrice(currentStockPrice);
                 Thread.sleep(30000);
-            } catch (InterruptedException e) {
-                // Handle the exception here (e.g., log the exception)
-                e.printStackTrace();
-                // Optionally, you can throw a custom unchecked exception to signal the interruption.
-                // throw new RuntimeException("Thread was interrupted while sleeping.", e);
-            }
+
         }
     }
 }
