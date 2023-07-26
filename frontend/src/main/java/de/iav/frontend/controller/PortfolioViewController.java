@@ -1,17 +1,10 @@
-
-
 package de.iav.frontend.controller;
 
-import de.iav.frontend.model.CurrentStockPrice;
-import de.iav.frontend.model.Transaction;
 import de.iav.frontend.model.User;
 import de.iav.frontend.model.UserPortfolio;
 import de.iav.frontend.service.PortfolioViewService;
 import de.iav.frontend.service.SceneSwitchService;
-import de.iav.frontend.service.StockService;
-import de.iav.frontend.service.TransactionService;
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.DoubleBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,7 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -45,29 +37,17 @@ public class PortfolioViewController {
     public Button sellButton;
     @FXML
     public Text portfolioValue;
-
-    private final PortfolioViewService portfolioViewService = PortfolioViewService.getInstance();
-    private final TransactionService transactionService = TransactionService.getInstance();
-    private final StockService stockService = StockService.getInstance();
-
     @FXML
     public ListView<UserPortfolio> listViewTransactions;
-
-
+    private final PortfolioViewService portfolioViewService = PortfolioViewService.getInstance();
 
 
     public void initialize() {
     }
-        //String userId="12345";
-
-
     private void initializeUser(){
 
-        // Retrieve portfolio transactions for the user
         List<UserPortfolio> portfolio = portfolioViewService.getPortfolioByUserID(user.id());
-        System.out.println(portfolio.toString());
 
-        //stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
         quantity.setCellValueFactory(data -> {
             int quantity = data.getValue().quantity();
             return Bindings.createObjectBinding(() -> quantity);
@@ -90,15 +70,7 @@ public class PortfolioViewController {
         });
         portfolioValue.setText(String.valueOf(portfolio.get(portfolio.size()-1).portfolioValue()));
 
-
-
-
-// Set the cell value factory for the third column to use the totalPriceBinding
-
-
-        // Add the data to the table
         portfolioTable.getItems().addAll(portfolio);
-
 
         portfolioTable.getSelectionModel()
                 .selectedItemProperty()
@@ -106,33 +78,25 @@ public class PortfolioViewController {
                 .addListener(
                         (observableValue, s, t1) -> {if (portfolioTable.getSelectionModel().getSelectedItem()!= null){
                             sellButton.setDisable(false);
-
-
                         }
                         }
                 );
     }
-
-
     @FXML
     public void openBuyView(ActionEvent event) throws IOException {
         System.out.println("public void openBuyView(ActionEvent event) throws IOException { user: " + user);
         sceneSwitchService.switchToBuyViewController(event, user);
 
     }
-
+    @FXML
     public void openSellView(ActionEvent event) throws IOException {
         sceneSwitchService.switchToSellViewController(event, user);
     }
-
+    @FXML
     public void setUserForPortfolio(User user) {
-
         this.user = user;
         initializeUser();
     }
-
-
-
 }
 
 
