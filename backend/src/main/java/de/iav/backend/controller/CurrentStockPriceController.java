@@ -26,7 +26,7 @@ public class CurrentStockPriceController {
     }
 
     @GetMapping("/{id}")
-    public Optional<CurrentStockPrice> getllCurrentStockPriceById(@PathVariable String id) {
+    public Optional<CurrentStockPrice> getCurrentStockPriceById(@PathVariable String id) {
         return currentStockPriceService.getCurrentStockPriceById(id);
     }
 

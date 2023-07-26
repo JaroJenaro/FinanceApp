@@ -14,10 +14,11 @@
    
             <TableView fx:id="portfolioTable" prefHeight="467.0" prefWidth="561.0" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="companyName" prefWidth="100.0" text="company name" />
-                    <TableColumn fx:id="quantity" prefWidth="101.0" text="quantity" />
+                    <TableColumn fx:id="companyName" prefWidth="162.0" text="company name" />
+                    <TableColumn fx:id="quantity" prefWidth="107.0" text="quantity" />
                     <TableColumn fx:id="buyPrice" prefWidth="101.0" text="buy price" />
-                    <TableColumn fx:id="currentPrice" prefWidth="101.0" text="current price" />
+                    <TableColumn fx:id="currentPrice" prefWidth="109.0" text="current price" />
+                    <TableColumn fx:id="performance" prefWidth="109.0" text="performance" />
                 </columns>
             </TableView>
         </VBox>
@@ -29,5 +30,6 @@
          </font>
       </Text>
       <Text fx:id="portfolioValue" layoutX="405.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="value" wrappingWidth="111.98307228088379" />
+      <Text layoutX="301.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="portfolio balance:" />
     </children>
 </AnchorPane>

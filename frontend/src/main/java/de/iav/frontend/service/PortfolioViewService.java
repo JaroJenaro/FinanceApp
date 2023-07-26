@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.iav.frontend.model.Stock;
 import de.iav.frontend.model.Transaction;
+import de.iav.frontend.model.UserPortfolio;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -79,10 +80,10 @@ public class PortfolioViewService {
 
     }
 
-    public List<Transaction> getPortfolioByUserID(String id) {
+    public List<UserPortfolio> getPortfolioByUserID(String id) {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/api/financeapp/users/portfolio/" + id))
+                .uri(URI.create("http://localhost:8080/api/financeapp/Portfolio/" + id))
                 .build();
 
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
@@ -92,7 +93,7 @@ public class PortfolioViewService {
 
     }
 
-    private List<Transaction> mapToPortfolioList(String responseBody) {
+    private List<UserPortfolio> mapToPortfolioList(String responseBody) {
         try {
             return objectMapper.readValue(responseBody, new TypeReference<>() {
             });
