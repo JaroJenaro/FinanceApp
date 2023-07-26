@@ -45,7 +45,7 @@ public class TransactionService {
         for (Transaction transaction : transactionRepository.findAllByUserId(id)
         ) {
 
-            if (transaction.getUser().getId().equals(id))
+            if (transaction.getUser().getId().equals(id) && !userStockList.contains(transaction.getStock()))
                 userStockList.add(transaction.getStock());
         }
         return userStockList;
