@@ -20,14 +20,13 @@ public class CurrentStockPriceController {
         this.currentStockPriceService = currentStockPriceService;
 
     }
-
     @GetMapping
     public List<CurrentStockPrice> getAllCurrentStockPrice() {
         return currentStockPriceService.getAllCurrentStockPrice();
     }
 
     @GetMapping("/{id}")
-    public Optional<CurrentStockPrice> getllCurrentStockPriceById(@PathVariable String id) {
+    public Optional<CurrentStockPrice> getCurrentStockPriceById(@PathVariable String id) {
         return currentStockPriceService.getCurrentStockPriceById(id);
     }
 

@@ -114,7 +114,7 @@ public class BuyViewController {
 
     public void stockChanged() {
         LOG.info(lv_stocks.getSelectionModel().getSelectedItem());
-        price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker());
+        price = stockService.getStockPrice(lv_stocks.getSelectionModel().getSelectedItem().stockTicker()).price();
         LOG.info("Price: {}", price);
         tf_price.setText(String.valueOf(price));
 

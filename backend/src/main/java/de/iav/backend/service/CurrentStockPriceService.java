@@ -48,7 +48,7 @@ public class CurrentStockPriceService {
         return currentStockPriceRepository.saveAll(tempCurrentStockPrice);
     }
 
-    public CurrentStockPrice saveCurrentStockPrice(CurrentStockPrice currentStockPrice) {
-        return currentStockPriceRepository.save(currentStockPrice);
+    public void saveCurrentStockPrice(CurrentStockPrice currentStockPrice) {
+        currentStockPriceRepository.save(currentStockPrice);
     }
 }

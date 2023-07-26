@@ -1,7 +1,6 @@
-package de.iav.backend.externalAPIcommunication;
+package de.iav.backend.externalAPICommunication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class StockResponse {
     @JsonProperty("Meta Data")
     private MetaData metaData;

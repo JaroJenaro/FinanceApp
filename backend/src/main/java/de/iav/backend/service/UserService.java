@@ -62,38 +62,4 @@ public class UserService {
     public Optional<User> getUserByEmail(String email) {
         return Optional.ofNullable(userRepository.findByEmail(email));
     }
-
-    public List<Transaction> calculateOwnedStocks(String userId) {
-        List<Transaction> portfolioList = transactionRepository.findAllByUserId(userId);
-        Map<String, Integer> stockQuantities = portfolioList.stream()
-                .collect(Collectors.groupingBy(
-                        transaction -> transaction.getStock().getStockTicker(),
-                        Collectors.summingInt(Transaction::getQuantity)
-                ));
-
-        return stockQuantities.entrySet().stream()
-                .map(entry -> {
-                    String stockTicker = entry.getKey();
-                    Integer quantity = entry.getValue();
-
-                    Optional<Stock> stockInfo = stockRepository.findStocksByStockTicker(stockTicker);
-                    String companyName = stockInfo.map(Stock::getCompanyName).orElse(null);
-
-
-                    return portfolioList.stream()
-                            .filter(transaction -> transaction.getStock().getStockTicker().equals(stockTicker))
-                            .findFirst()
-                            .map(transaction -> new Transaction(
-                                    transaction.getId(),
-                                    transaction.getTypeOfTransaction(),
-                                    transaction.getDateAndTimeOfTransaction(),
-                                    transaction.getUser(),
-                                    new Stock(stockTicker, companyName, null, null),
-                                    quantity,
-                                    transaction.getPrice()
-                            ))
-                            .orElse(null);
-                })
-                .collect(Collectors.toList());
-    }
 }

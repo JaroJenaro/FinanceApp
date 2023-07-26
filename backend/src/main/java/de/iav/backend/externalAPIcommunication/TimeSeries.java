@@ -1,6 +1,5 @@
-package de.iav.backend.externalAPIcommunication;
+package de.iav.backend.externalAPICommunication;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import de.iav.backend.externalAPIcommunication.TimeSeriesEntry;
 
 import java.util.HashMap;
 import java.util.Map;
