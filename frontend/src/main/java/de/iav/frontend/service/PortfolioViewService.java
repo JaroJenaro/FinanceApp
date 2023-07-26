@@ -16,8 +16,6 @@ public class PortfolioViewService {
         private final HttpClient httpClient;
         private final ObjectMapper objectMapper;
 
-
-
         private PortfolioViewService() {
             this.httpClient = HttpClient.newHttpClient();
             this.objectMapper = new ObjectMapper();
