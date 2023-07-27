@@ -143,5 +143,22 @@ public class AuthService {
         }
     }
 
+    public String me() {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BACKEND_AUTH_URL + "/me"))
+                .GET()
+                .header("Cookie", "JSESSIONID=" + sessionId)
+                .build();
+
+        var response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        int statusCode = response.join().statusCode();
+
+        if (statusCode == 200) {
+            return response.join().toString();
+        } else {
+            setErrorMessage("Logout failed");
+            return "Kein User ist eingeloggt";
+        }
+    }
 
 }

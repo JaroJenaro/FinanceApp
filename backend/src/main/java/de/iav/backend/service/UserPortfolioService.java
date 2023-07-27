@@ -1,7 +1,6 @@
 package de.iav.backend.service;
 
 import de.iav.backend.model.*;
-import de.iav.backend.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +44,7 @@ public class UserPortfolioService {
             double averageBuyPrice = totalQuantity == 0 ? 0 : totalPrice / totalQuantity;
 
             // Fetch the current price for the stock using some API or external data source
-            Optional<CurrentStockPrice> currentPrice = currentStockPriceService.getCurrentStockPriceById(stock.getStockTicker());
+            Optional<CurrentStockPrice> currentPrice = currentStockPriceService.getCurrentStockPriceByStockTicker(stock.getStockTicker());
 
             double currentValue = 0;
             double performance = 0;

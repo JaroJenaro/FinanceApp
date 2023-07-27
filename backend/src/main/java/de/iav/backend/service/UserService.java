@@ -28,9 +28,11 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    public List<Transaction> getAllTransactionsByUser(Optional<User> user){
+
+    public List<Transaction> getAllTransactionsByUser(UserWithoutUserDetails user) {
         return transactionRepository.findTransactionByUser(user);
     }
+
     public Optional<User> getUserById(String id) {
         return userRepository.findById(id);
     }

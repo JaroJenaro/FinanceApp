@@ -31,8 +31,8 @@ public class CurrentStockPriceService {
     }
 
 
-    public Optional<CurrentStockPrice> getCurrentStockPriceById(String id) {
-        return currentStockPriceRepository.findById(id);
+    public Optional<CurrentStockPrice> getCurrentStockPriceByStockTicker(String stockTicker) {
+        return currentStockPriceRepository.findByStockTicker(stockTicker);
     }
 
 

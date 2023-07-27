@@ -1,6 +1,7 @@
 package de.iav.frontend.controller;
 
 import de.iav.frontend.model.*;
+import de.iav.frontend.security.AuthService;
 import de.iav.frontend.service.SceneSwitchService;
 import de.iav.frontend.service.StockService;
 import de.iav.frontend.service.TransactionService;
@@ -21,6 +22,7 @@ import java.time.LocalDateTime;
 public class BuyViewController {
 
     private final StockService stockService = StockService.getInstance();
+    private final AuthService authService = AuthService.getInstance();
 
     private final TransactionService transactionService = TransactionService.getInstance();
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
@@ -29,6 +31,8 @@ public class BuyViewController {
 
     @FXML
     public Label l_user;
+    @FXML
+    public Label l_userMe;
 
     private User user;
     @FXML
@@ -111,6 +115,7 @@ public class BuyViewController {
         this.user = user;
         LOG.info("setUserForBuying(User user) { user: {}", this.user);
         l_user.setText(user.toString());
+        l_userMe.setText(authService.me());
     }
 
     public void stockChanged() {
