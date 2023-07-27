@@ -1,4 +1,4 @@
-package de.iav.backend.externalAPICommunication;
+package de.iav.backend.externalApiCommunication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 public class StockResponse {

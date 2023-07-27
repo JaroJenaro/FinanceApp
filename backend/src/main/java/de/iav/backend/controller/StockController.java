@@ -1,7 +1,7 @@
 package de.iav.backend.controller;
 
 
-import de.iav.backend.externalAPICommunication.StockDataAccess;
+import de.iav.backend.externalApiCommunication.StockDataAccess;
 import de.iav.backend.model.CurrentStockPrice;
 import de.iav.backend.model.Stock;
 import de.iav.backend.service.CurrentStockPriceService;
@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/financeapp/stocks")
-//public class StockController implements ApplicationRunner {
 public class StockController {
 
     private final StockService stockService;
@@ -56,11 +55,6 @@ public class StockController {
         return currentPrice;
     }
 
-    //@Override
-    //public void run(ApplicationArguments args) throws InterruptedException {
-    //Thread.sleep(5000);
-    //setAllStockPrices();
-    //}
 
     @GetMapping("/setAllPrice")
     public void setAllStockPrices() throws InterruptedException {
