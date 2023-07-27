@@ -3,6 +3,7 @@ package de.iav.backend.security;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public AppUserResponse register(@RequestBody NewAppUser newAppUser) {
+
         return appUserService.register(newAppUser);
     }
 

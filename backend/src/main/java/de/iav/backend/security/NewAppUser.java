@@ -7,4 +7,6 @@ public record NewAppUser(
         String password,
         String email
 ) {
+
+
 }
