@@ -3,7 +3,6 @@ package de.iav.backend.service;
 import de.iav.backend.exception.UserNotFoundException;
 import de.iav.backend.model.Transaction;
 import de.iav.backend.model.User;
-import de.iav.backend.repository.StockRepository;
 import de.iav.backend.repository.TransactionRepository;
 import de.iav.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,7 @@ public class UserService {
     ));
     private final UserRepository userRepository;
     private final TransactionRepository transactionRepository;
-    private final StockRepository stockRepository;
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -37,9 +36,7 @@ public class UserService {
     public void deleteUser(String id){
         userRepository.deleteById(id);
     }
-    public User createUser(User user){
-        return userRepository.save(user);
-    }
+
     public User updateUser(String id, User userToUpdate) {
         userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         User updatedStudent = userToUpdate.withId(id);

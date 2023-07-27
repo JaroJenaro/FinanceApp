@@ -1,7 +1,6 @@
 package de.iav.backend.model;
 
 
-import de.iav.backend.security.NewAppUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,13 +32,11 @@ public class User implements UserDetails {
         return new User(newId, this.firstName, this.lastName, this.email, this.password, this.role);
 
     }
-
+/*
     public NewAppUser getNewAppUser() {
-        //return new User(newId, this.firstName, this.lastName, this.email, this.password, this.portfolio, this.moneyAccount);
-        return new NewAppUser(null, this.firstName, this.lastName, this.email, this.password);
-
+                return new NewAppUser(null, this.firstName, this.lastName, this.email, this.password);
     }
-
+*/
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role));
