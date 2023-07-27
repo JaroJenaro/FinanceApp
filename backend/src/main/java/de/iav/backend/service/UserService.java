@@ -3,6 +3,7 @@ package de.iav.backend.service;
 import de.iav.backend.exception.UserNotFoundException;
 import de.iav.backend.model.Transaction;
 import de.iav.backend.model.User;
+import de.iav.backend.model.UserWithoutUserDetails;
 import de.iav.backend.repository.TransactionRepository;
 import de.iav.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +58,7 @@ public class UserService {
         return userRepository.saveAll(tempUsers);
     }
 
-    public Optional<User> getUserByEmail(String email) {
-        return Optional.ofNullable(userRepository.findByEmail(email));
+    public Optional<UserWithoutUserDetails> getUserByEmail(String email) {
+        return Optional.ofNullable(userRepository.findByEmail(email).getUserWithoutUserDetails());
     }
 }

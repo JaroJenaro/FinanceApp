@@ -18,5 +18,6 @@ module de.iav.frontend {
     exports de.iav.frontend.controller;
     exports de.iav.frontend.service;
     exports de.iav.frontend.model;
+    exports de.iav.frontend.security;
 
 }

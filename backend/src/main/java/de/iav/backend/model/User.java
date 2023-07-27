@@ -32,11 +32,16 @@ public class User implements UserDetails {
         return new User(newId, this.firstName, this.lastName, this.email, this.password, this.role);
 
     }
-/*
-    public NewAppUser getNewAppUser() {
-                return new NewAppUser(null, this.firstName, this.lastName, this.email, this.password);
+
+    /*
+        public NewAppUser getNewAppUser() {
+                    return new NewAppUser(null, this.firstName, this.lastName, this.email, this.password);
+        }
+    */
+    public UserWithoutUserDetails getUserWithoutUserDetails() {
+        return new UserWithoutUserDetails(this.getId(), this.getFirstName(), this.getLastName(), this.getEmail(), this.getRole());
     }
-*/
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + role));

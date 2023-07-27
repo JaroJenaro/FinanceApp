@@ -17,7 +17,7 @@ public class TransactionController {
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
 
     private Stock transactionStock;
-    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "1234");
+    private final User user = new User("1234", "firstName", "LastName", "firstName@lastName.com", "USER");
 
     @FXML
     public TextField tfCompany;
