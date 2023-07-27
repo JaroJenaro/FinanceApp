@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -61,14 +62,15 @@ public class PortfolioViewController {
             return Bindings.createObjectBinding(() -> price);
         });
         currentPrice.setCellValueFactory(data -> {
-            double price= data.getValue().currentPrice();
-            return  Bindings.createObjectBinding(()->price);
+            double price = data.getValue().currentPrice();
+            return Bindings.createObjectBinding(() -> price);
         });
         performance.setCellValueFactory(data -> {
-            double performance= data.getValue().performance();
-            return  Bindings.createObjectBinding(()->performance);
+            double performance = data.getValue().performance();
+            return Bindings.createObjectBinding(() -> performance);
         });
-        portfolioValue.setText(String.valueOf(portfolio.get(portfolio.size()-1).portfolioValue()));
+        if (portfolio.size() > 0)
+            portfolioValue.setText(String.valueOf(portfolio.get(portfolio.size() - 1).portfolioValue()));
 
         portfolioTable.getItems().addAll(portfolio);
 
@@ -76,9 +78,10 @@ public class PortfolioViewController {
                 .selectedItemProperty()
                 // Listener der etwas macht
                 .addListener(
-                        (observableValue, s, t1) -> {if (portfolioTable.getSelectionModel().getSelectedItem()!= null){
-                            sellButton.setDisable(false);
-                        }
+                        (observableValue, s, t1) -> {
+                            if (portfolioTable.getSelectionModel().getSelectedItem() != null) {
+                                sellButton.setDisable(false);
+                            }
                         }
                 );
     }
