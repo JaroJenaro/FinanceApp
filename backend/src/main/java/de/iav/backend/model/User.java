@@ -4,6 +4,7 @@ package de.iav.backend.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +23,7 @@ public class User implements UserDetails {
     String id;
     String firstName;
     String lastName;
+    @Indexed(unique = true)
     String email;
     String password;
     String role;

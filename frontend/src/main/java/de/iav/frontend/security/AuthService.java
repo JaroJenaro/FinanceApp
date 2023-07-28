@@ -154,7 +154,7 @@ public class AuthService {
         int statusCode = response.join().statusCode();
 
         if (statusCode == 200) {
-            return response.join().toString();
+            return response.join().body();
         } else {
             setErrorMessage("Logout failed");
             return "Kein User ist eingeloggt";
