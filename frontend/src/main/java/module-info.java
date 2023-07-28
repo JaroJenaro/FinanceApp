@@ -7,6 +7,7 @@ module de.iav.frontend {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
     requires org.apache.logging.log4j;
+    requires lombok;
 
 
     opens de.iav.frontend to javafx.fxml;
