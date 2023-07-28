@@ -59,6 +59,11 @@ public class StartPageController {
     public void deleteUser() {
 
     }
+
+
+    public void onActionPasswordField(ActionEvent event) throws IOException {
+        loginAuthorized(event);
+    }
 }
 
 
