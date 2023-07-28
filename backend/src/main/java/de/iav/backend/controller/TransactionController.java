@@ -3,6 +3,7 @@ package de.iav.backend.controller;
 
 import de.iav.backend.model.Stock;
 import de.iav.backend.model.Transaction;
+import de.iav.backend.model.TransactionWithEasyUser;
 import de.iav.backend.model.TransactionWithoutIdDTO;
 import de.iav.backend.service.TransactionService;
 import org.springframework.web.bind.annotation.*;
@@ -33,19 +34,20 @@ public class TransactionController {
     }
 
     @PostMapping
-    public Transaction executeTransactions(@RequestBody TransactionWithoutIdDTO transactionWithoutIdDTO) {
+    public TransactionWithEasyUser executeTransactions(@RequestBody TransactionWithoutIdDTO transactionWithoutIdDTO) {
         System.out.println(transactionWithoutIdDTO.toString() + "transactionDT");
         return transactionService.executeTransaction(transactionWithoutIdDTO);
     }
 
     @GetMapping("/stocks/user/{id}")
     public List<Stock> getAllStocksByUser(@PathVariable String id) {
+
         return transactionService.getAllStocksByUser(id);
     }
 
     @GetMapping("/user/{id}")
-    public List<Transaction> getAllTransactionByUser(@PathVariable String id) {
-        return transactionService.getAllTransactionsByUserId(id);
+    public List<TransactionWithEasyUser> getAllEasyTransactionByUser(@PathVariable String id) {
+        return transactionService.getAllEasyTransactionsByUserId(id);
     }
 
 

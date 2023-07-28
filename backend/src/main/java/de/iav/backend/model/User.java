@@ -37,7 +37,12 @@ public class User implements UserDetails {
         public NewAppUser getNewAppUser() {
                     return new NewAppUser(null, this.firstName, this.lastName, this.email, this.password);
         }
+
+        public UserWithoutUserDetails getUserWithoutUserDetails() {
+        return new UserWithoutUserDetails(this.id, this.firstName, this.lastName, this.email, this.role);
+    }
     */
+
     public UserWithoutUserDetails getUserWithoutUserDetails() {
         return new UserWithoutUserDetails(this.getId(), this.getFirstName(), this.getLastName(), this.getEmail(), this.getRole());
     }

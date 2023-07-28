@@ -11,7 +11,7 @@ public class TransactionWithoutIdDTO {
     TransactionType typeOfTransaction;
     String dateAndTimeOfTransaction;
 
-    UserWithoutUserDetails user;
+    User user;
 
     Stock stock;
     Integer quantity;

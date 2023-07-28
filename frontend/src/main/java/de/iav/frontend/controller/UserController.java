@@ -5,7 +5,6 @@ import de.iav.frontend.model.UserWithoutIdDto;
 import de.iav.frontend.security.AppUserRequest;
 import de.iav.frontend.security.AuthService;
 import de.iav.frontend.service.SceneSwitchService;
-import de.iav.frontend.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,9 +28,7 @@ public class UserController {
     @FXML
     public Label errorLabel;
 
-    private UserWithoutIdDto userWithoutIdDto;
 
-    private final UserService userService = new UserService();
     private final AuthService authService = AuthService.getInstance();
 
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
@@ -49,11 +46,10 @@ public class UserController {
     }
 
     public void setUserWithoutIdDtoForSignIn(UserWithoutIdDto userWithoutIdDto) {
-        this.userWithoutIdDto = userWithoutIdDto;
-        email.setText(this.userWithoutIdDto.email());
-        password.setText(this.userWithoutIdDto.password());
-        firstName.setText(this.userWithoutIdDto.firstName());
-        lastName.setText(this.userWithoutIdDto.lastName());
+        email.setText(userWithoutIdDto.email());
+        password.setText(userWithoutIdDto.password());
+        firstName.setText(userWithoutIdDto.firstName());
+        lastName.setText(userWithoutIdDto.lastName());
     }
 
 

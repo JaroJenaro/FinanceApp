@@ -15,14 +15,15 @@ public class Transaction {
         String id;
         TransactionType typeOfTransaction;
         String dateAndTimeOfTransaction;
-        @DBRef(db = "users")
-        UserWithoutUserDetails user;
+        @DBRef
+        //UserWithoutUserDetails user;
+        User user;
         @DBRef
         Stock stock;
         Integer quantity;
         Double price;
 
-        public Transaction(TransactionType typeOfTransaction, String dateAndTimeOfTransaction, UserWithoutUserDetails user, Stock stock, Integer quantity, Double price) {
+        public Transaction(TransactionType typeOfTransaction, String dateAndTimeOfTransaction, User user, Stock stock, Integer quantity, Double price) {
                 this.typeOfTransaction = typeOfTransaction;
                 this.dateAndTimeOfTransaction = dateAndTimeOfTransaction;
                 this.user = user;
@@ -31,5 +32,10 @@ public class Transaction {
                 this.price = price;
         }
 
+        public TransactionWithEasyUser getTransactionWithEasyUser() {
+                return new TransactionWithEasyUser(this.id, this.typeOfTransaction,
+                        this.dateAndTimeOfTransaction, this.user.getUserWithoutUserDetails(),
+                        this.stock, this.quantity, this.price);
+        }
 
 }

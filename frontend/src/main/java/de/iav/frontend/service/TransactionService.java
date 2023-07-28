@@ -32,6 +32,7 @@ public class TransactionService {
 
 
     private Transaction mapToTransaction(String json) {
+        System.out.println(json);
         try {
             return objectMapper.readValue(json, Transaction.class);
         } catch (JsonProcessingException e) {
